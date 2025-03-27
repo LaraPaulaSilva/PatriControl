@@ -1,4 +1,4 @@
-# Título do Projeto
+# PatriControl 
 
 `CURSO`
 
@@ -10,16 +10,16 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto desenvolvido.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+* Iago Henrique Lima Silva De Oliveira 
+* Julia Gabriella Silva
+* Lara Paula Silva
+* Leandro Henrique de Oliveira Falcão Carvalho
+* Lucas Marques Gomes Viana Lima
+* Rickelmy Wendler de Freitas 
 
 ## Orientador
 
-* Nome completo do professor
+* Marco Rodrigo Costa 
 
 # Documentação
 
