@@ -79,22 +79,6 @@ Para organização e distribuição das tarefas do projeto, a equipe está utili
 
 O quadro Kanban do grupo desenvolvido na ferramenta de gerenciamento de projetos está disponível <a href="https://trello.com/invite/b/67e71c99c22a64da36f37255/ATTIa2301fef57625d1ce25b3b3da1600f0aCDDD0A69/backlog-patricontrol" target="_blank">clicando aqui</a>.
 
-### Etiquetas
-<p>As tarefas são, ainda, etiquetadas em função da natureza da atividade e seguem o seguinte esquema de cores/categorias:</p>
-
-<ul>
-  <li>Bug (Erro no código)</li>
-  <li>Desenvolvimento (Development)</li>
-  <li>Documentação (Documentation)</li>
-  <li>Gerência de Projetos (Project Management)</li>
-  <li>Infraestrutura (Infrastructure)</li>
-  <li>Testes (Tests)</li>
-</ul>
-
-<figure> 
-  <img src="https://user-images.githubusercontent.com/100447878/164068979-9eed46e1-9b44-461e-ab88-c2388e6767a1.png"
-</figure> 
-  
 ### Ferramentas
 
 As ferramentas empregadas no projeto são:
