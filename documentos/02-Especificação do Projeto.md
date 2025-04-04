@@ -75,27 +75,24 @@ Manter um registro atualizado de aquisição, incluindo nota fiscal, valor e dat
 </tr>
 </tbody>
 </table>
+
 ## Histórias de Usuários
 
-[Apresente aqui as histórias de usuários que são relevantes para o projeto da solução.]
+Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-> **Link Útil**:
-> - [Como escrever boas histórias de usuário](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-
-[Utilize o modelo de tabela abaixo para apresentar as histórias de usuários.]
-
-|EU COMO... `QUEM`   | QUERO/PRECISO ... `O QUE` |PARA ... `PORQUE`                 |
+|EU COMO... `PERSONA`   | QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|---------------------------|----------------------------------|
-| ...                | ...                       | ...                              |
-| ...                | ...                       | ...                              |
-
+| Gestor de Manutenção       | Monitorar cronogramas de manutenção, acompanhar status e histórico de serviços. Configurar alertas automáticos para manutenções preventivas. | Garantir a organização e eficiência da manutenção e evitar falhas. |
+| Gestor de Patrimônio       | Gerenciar bens, rastrear movimentação e depreciação, controlar acessos e gerar relatórios          | Manter o controle patrimonial, otimizar recursos, evitar perdas, garantir segurança nos dados e facilitar a gestão financeira.               |
+| Técnico de Manutenção      | Gerenciar ordens de serviço, registrar manutenções, acessar manuais e relatar falhas               | Agilizar processos, melhorar a gestão de equipamentos e prevenir falhas recorrentes.                              |
+| Colaborador Usuário        | Buscar equipamentos, solicitar e acompanhar manutenções, acessar manuais                           | Gerenciar disponibilidade, garantir bom estado, planejar uso e evitar mau uso dos equipamentos.                                         |
+| Gestor de Manutenção       | Visualizar o status em tempo real das ordens de serviço e equipamentos críticos                   | Tomar decisões rápidas, minimizar tempo de inatividade e garantir a continuidade operacional. |
+| Técnico de Manutenção      | Receber notificações de novas ordens de serviço com prioridade definida                 | Agilizar os atendimentos, organizar a rotina e responder rapidamente a falhas críticas.       |
+| Colaborador Usuário        | Consultar a agenda de uso de equipamentos e reservar com antecedência                              | Evitar conflitos de uso, melhorar o planejamento e garantir acesso aos recursos quando necessário. |
+| Gestor de Manutenção       | Gerar relatórios detalhados com datas, custos e fornecedores. | Reduzir custos, otimizar recursos e aumentar a vida útil dos equipamentos. |
 ## Requisitos do Projeto
 
-[Com base nas Histórias de Usuários, enumere os requisitos da solução. Lembre-se que cada requisito deve corresponder a uma, e somente uma, característica alvo da solução. Além disso, certifique-se de que todos os aspectos capturados nas Histórias de Usuário foram cobertos.]
-
 ### Requisitos Funcionais
-
-[Utilize o modelo de tabela abaixo para apresentar os requisitos funcionais]
 
 |ID    | Descrição                | Prioridade |
 |-------|---------------------------------|----|
@@ -115,8 +112,6 @@ Manter um registro atualizado de aquisição, incluindo nota fiscal, valor e dat
 **Prioridade: Alta / Média / Baixa. 
 
 ### Requisitos não Funcionais
-
-[Utilize o modelo de tabela abaixo para apresentar os requisitos não-funcionais]
 
 |ID      | Descrição               |Prioridade |
 |--------|-------------------------|----|
