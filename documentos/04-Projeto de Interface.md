@@ -2,7 +2,7 @@
 # Projeto de Interface
 
 ## User Flow
-O user flow da imagem abaixo representa a navegação do usuário pelas telas do sistema. Cada uma dessas telas é explicada na seção de Protótipo de Baixa Fidelidade a seguir. Para acessar o protótipo interativo, disponibilizado(https://miro.com/welcomeonboard/UHpsU1pWM2xXQktLWVRmMDJ2bkRiUGlWTlpUQVZPdHJYd0I0aGxWUktRZzljZ1hZdTdyKzBjczd1aVVhOGhBOTdkNHEwMzZZbXM2WWsrSVFJUzFnSHI1SmZyc0xEMk9sNjROY2Z1bGZkZ0lQN1BZbnFYZ1dKZUtnRkc2YWFYd01yVmtkMG5hNDA3dVlncnBvRVB2ZXBnPT0hdjE=?share_link_id=144649237091).
+O user flow da imagem abaixo representa a navegação do usuário pelas telas do sistema. Cada uma dessas telas é explicada na seção de Protótipo de Baixa Fidelidade a seguir. Para acessar o protótipo interativo, disponibilizado(https://miro.com/welcomeonboard/UHpsU1pWM2xXQktLWVRmMDJ2bkRiUGlWTlpUQVZPdHJYd0I0aGxWUktRZzljZ1hZdTdyKzBjczd1aVVhOGhBOTdkNHEwMzZZbXM2WWsrSVFJUzFnSHI1SmZyc0xEMk9sNjROY2Z1bGZkZ0w1OE9tdkZtSjhWdTFYTGV0bEx5cGZzVXVvMm53MW9OWFg5bkJoVXZxdFhRPT0hdjE=?share_link_id=685983780247).
 
 ![patricontrol (3)](https://github.com/user-attachments/assets/2a28d6a5-060d-41a9-8dd6-f404af258aec)
 
