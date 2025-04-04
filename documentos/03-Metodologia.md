@@ -1,41 +1,84 @@
 
 # Metodologia
 
-Esta seção descreve a organização da equipe para a execução das tarefas do projeto e as ferramentas utilizadas para a manutenção dos códigos e demais artefatos.
+A metodologia contempla as definições de ferramental utilizado pela equipe tanto para a manutenção dos códigos e demais artefatos quanto para a organização do time na execução das tarefas do projeto.
 
+## Relação de Ambientes de Trabalho
 
-## Gerenciamento de Projeto
-A metodologia ágil escolhida para o desenvolvimento deste projeto foi o SCRUM, pois como citam Amaral, Fleury e Isoni (2019, p. 68), seus benefícios são a
-
-“visão clara dos resultados a entregar; ritmo e disciplina necessários à execução; definição de papéis e responsabilidades dos integrantes do projeto (Scrum Owner, Scrum Master e Team); empoderamento dos membros da equipe de projetos para atingir o desafio; conhecimento distribuído e compartilhado de forma colaborativa; ambiência favorável para crítica às ideias e não às pessoas.”
+<table style="border-collapse: collapse;">
+  <tr>
+    <th style="border: 1px solid white; padding: 10px;">Ambiente</th>
+    <th style="border: 1px solid white; padding: 10px;">Plataforma</th>
+    <th style="border: 1px solid white; padding: 10px;">Link de acesso</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 10px;">Repositório de código fonte</td>
+    <td style="border: 1px solid black; padding: 10px;">GitHub</td>
+    <td style="border: 1px solid black; padding: 10px;"><a href="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-1-e1-proj-web-t11-patricontrol.git" target="_blank">Clique aqui</a> para acessar o repositório</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 10px;">Documentos do projeto</td>
+    <td style="border: 1px solid black; padding: 10px;">GitHub</td>
+    <td style="border: 1px solid black; padding: 10px;"><a href="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-1-e1-proj-web-t11-patricontrol/tree/main/documentos" target="_blank">Clique aqui</a> para acessar a documentação no Drive</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 10px;">Projeto de Interface e  Wireframes</td>
+    <td style="border: 1px solid black; padding: 10px;">Marvel App</td>
+    <td style="border: 1px solid black; padding: 10px;"><a href="https://marvelapp.com/prototype/726di8i/screen/96975678" target="_blank">Clique aqui</a> para acessar os Wireframes do projeto</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 10px;">Gerenciamento do Projeto</td>
+    <td style="border: 1px solid black; padding: 10px;">Trello</td>
+    <td style="border: 1px solid black; padding: 10px;"><a href="https://trello.com/invite/b/67e71c99c22a64da36f37255/ATTIa2301fef57625d1ce25b3b3da1600f0aCDDD0A69/backlog-patricontrol" target="_blank">Clique aqui</a> para acessar nosso gerenciador do Projeto</td>
+  </tr>
+</table>
 
 ### Divisão de Papéis
 
-A equipe utiliza o Scrum como base para definição do processo de desenvolvimento.
-[Adicione informações abaixo sobre a divisão de papéis entre os membros da equipe.]
-- Scrum Master: Nome de um membro da equipe, principal responsável pela gestão do projeto.
-- Product Owner: Nome de um membro da equipe, representante dos interesses de todos os envolvidos (Stakeholders), define as funcionalidades do produto e prioriza os itens de Product Backlog.
-- Equipe de Desenvolvimento: Nomes de todos os membros da equipe, pois todos os membros deverão implementar uma tela/funcionalidade.
-- Equipe de Design: Nomes dos membros da equipe que trabalharão com design.
+A equipe está organizada da seguinte maneira:
 
-> **Links Úteis**:
+<ul>
+ <li>Scrum Master: Iago Henrique</li>
+ <li>Product Owner: Lucas Marques</li>
+ <li>Equipe de Desenvolvimento:</li>
+  <ul>
+   <li>Lara Paula</li>
+   <li>Julia Gabriella</li>
+   <li>Leandro Henrique</li>
+   <li>Iago Henrique</li>
+   <li>Lucas Marques</li>
+   <li>Rickelmy Wendler</li> 
+  </ul>
+ <li>Equipe de Design:</li>
+  <ul>
+   <li>Leandro Henrique</li>
+  </ul>
+</ul>
+
+<!-- > **Links Úteis**:
 > - [11 Passos Essenciais para Implantar Scrum no seu 
 > Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
+> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0) -->
 
 ### Processo
 
-[Adicione informações sobre detalhes da implementação do Scrum seguido pela equipe. A equipe poderá fazer uso de ferramentas on-line (GitHub Project ou Trello) para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução. O quadro Kanban deverá apresentar a estrutura abaixo. Inserir despois das informações uma imagem do Kanban do projeto.]
-- Backlog: recebe as tarefas a serem trabalhadas e representa o Product Backlog. Todas as atividades identificadas no decorrer do projeto também devem ser incorporadas a esta lista. 
-- To Do: Esta lista representa o Sprint Backlog. Este é o Sprint atual que estamos trabalhando. 
-- Doing: Quando uma tarefa tiver sido iniciada, ela é movida para cá. 
-- Done: nesta lista são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário. Não há mais edições ou revisões necessárias, ele está agendado e pronto para a ação.
-
-> **Links Úteis**:
+Para organização e distribuição das tarefas do projeto, a equipe está utilizando o Trello estruturado com as seguintes listas: 
+ 
+<!-- > **Links Úteis**:
 > - [Project management, made simple](https://github.com/features/project-management/)
 > - [Sobre quadros de projeto](https://docs.github.com/pt/github/managing-your-work-on-github/about-project-boards)
 > - [Como criar Backlogs no Github](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial Slack](https://slack.com/intl/en-br/)
+> - [Tutorial Slack](https://slack.com/intl/en-br/) -->
+
+<ul>
+ <li><strong>Backlog: </strong>recebe as tarefas a serem trabalhadas e representa o Product Backlog. Todas as atividades identificadas no decorrer do projeto também devem ser incorporadas a esta lista.</li>
+ <li><strong>A fazer: </strong>esta lista representa o Sprint Backlog. Este é o Sprint atual que estamos trabalhando.</li>
+ <li><strong>Em andamento: </strong>quando uma tarefa tiver sido iniciada, ela é movida para cá.</li>
+ <li><strong>Feito: </strong>nesta lista são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para serem entregues ao usuário. Não há mais edições ou revisões necessárias, ele está agendado e pronto para a ação.</li>
+</ul>
+
+O quadro Kanban do grupo desenvolvido na ferramenta de gerenciamento de projetos está disponível <a href="[https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/434](https://trello.com/invite/b/67e71c99c22a64da36f37255/ATTIa2301fef57625d1ce25b3b3da1600f0aCDDD0A69/backlog-patricontrol)" target="_blank">clicando aqui</a>.
+
 
 
 ### Etiquetas
@@ -57,19 +100,20 @@ A equipe utiliza o Scrum como base para definição do processo de desenvolvimen
   
 ### Ferramentas
 
-[Descreva aqui as ferramentas empregadas no projeto e os ambiente de trabalho utilizados pela  equipe para desenvolvê-lo. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).]
+As ferramentas empregadas no projeto são:
 
-Os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a relação dos ambientes com seu respectivo propósito é apresentada na tabela que se segue.
+- Editor de código: Visual Studio Code.
+- Ferramentas de comunicação: Microsoft Teams.
+- Ferramentas de desenho de tela (_wireframing_): Marvel App
 
-| AMBIENTE                            | PLATAFORMA                         | LINK DE ACESSO                         |
-|-------------------------------------|------------------------------------|----------------------------------------|
-| Repositório de código fonte         | GitHub                             | http://....                            |
-| Documentos do projeto               | GitHub                             | http://....                            |
-| Projeto de Interface                | Figma                              | http://....                            |
-| Gerenciamento do Projeto            | GitHub Projects                    | http://....                            |
-| Hospedagem                          | GitHub Pages                       | http://....                            |
+O editor de código foi escolhido porque ele possui uma integração com o
+sistema de versão. As ferramentas de comunicação utilizadas possuem
+integração semelhante e por isso foram selecionadas. Por fim, para criar
+diagramas utilizamos essa ferramenta por melhor captar as
+necessidades da nossa solução.
 
-
-### Estratégia de Organização de Codificação 
-
-Todos os artefatos relacionados a implementação e visualização dos conteúdos do projeto do site deverão ser inseridos na pasta [codigo-fonte](http://https://github.com/ICEI-PUC-Minas-PMV-ADS/WebApplicationProject-Template-v2/tree/main/codigo-fonte). Consulte também a nossa sugestão referente a estratégia de organização de codificação a ser adotada pela equipe de desenvolvimento do projeto.
+<!-- Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
+ 
+> **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
+> - [Slack](https://slack.com/)
+> - [Github](https://github.com/) -->
