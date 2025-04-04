@@ -2,7 +2,7 @@
 # Projeto de Interface
 
 ## User Flow
-O user flow da imagem abaixo representa a navegação do usuário pelas telas do sistema. Cada uma dessas telas é explicada na seção de Protótipo de Baixa Fidelidade a seguir. Para acessar o protótipo interativo, disponibilizado(https://miro.com/welcomeonboard/UHpsU1pWM2xXQktLWVRmMDJ2bkRiUGlWTlpUQVZPdHJYd0I0aGxWUktRZzljZ1hZdTdyKzBjczd1aVVhOGhBOTdkNHEwMzZZbXM2WWsrSVFJUzFnSHVzTzZaS25HSDlrS2FydmxSOWZyN2ErbnZ0bjFZb3kzOUJTVEY4WnpGUHFhWWluRVAxeXRuUUgwWDl3Mk1qRGVRPT0hdjE=?share_link_id=759049839378).
+O user flow da imagem abaixo representa a navegação do usuário pelas telas do sistema. Cada uma dessas telas é explicada na seção de Protótipo de Baixa Fidelidade a seguir. Para acessar o protótipo interativo, disponibilizado(https://miro.com/app/board/uXjVIGqKVFo=/?share_link_id=298110967796).
 
 ![patricontrol (3)](https://github.com/user-attachments/assets/2a28d6a5-060d-41a9-8dd6-f404af258aec)
 
