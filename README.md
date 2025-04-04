@@ -6,7 +6,7 @@
 
 `1º semestre/2025`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto desenvolvido.
+O projeto "Patricontrol" foi desenvolvido com o objetivo de oferecer uma solução eficiente para a gestão de patrimônio em empresas. A ferramenta permite o controle detalhado de bens patrimoniais, desde o cadastro e rastreamento até a manutenção preventiva e corretiva.
 
 ## Integrantes
 
