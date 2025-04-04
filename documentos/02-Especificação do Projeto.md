@@ -66,8 +66,9 @@
 
 |ID      | Descrição               |Prioridade |
 |--------|-------------------------|----|
-| RNF-01 |  ...                    | ...   | 
-| ...    |  ...                    | ...   | 
+| RNF-01 |  A aplicação deve ser publicada em um ambiente acessível público na Internet.                     | Alta   | 
+| RNF-02    |  A aplicação deverá ser responsiva permitindo a visualização em dispositivos diversos de forma adequada.                     | Alta   | 
+| RNF-03    | A interface da aplicação deve ser intuitiva e fácil de usar, com um design amigável que facilite a navegação dos usuários.                      | Alta   | 
 
 **Prioridade: Alta / Média / Baixa. 
 
