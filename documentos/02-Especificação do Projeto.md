@@ -7,20 +7,74 @@
 <table>
 <tbody>
 <tr align=center>
-<th colspan="2">Perfil Nome </th>
+<th colspan="2">Perfil 1: Gestor de Manutenção </th>
 </tr>
 <tr>
 <td width="150px"><b>Descrição</b></td>
-<td width="600px">...</td>
+<td width="600px"> Responsável por acompanhar e supervisionar as atividades de manutenção preventiva e corretiva dos ativos da empresa.   </td>
 </tr>
 <tr>
 <td><b>Necessidades</b></td>
-<td>...</td>
+<td> Monitorar o status e o histórico dos equipamentos. Agendar e acompanhar manutenções preventivas para evitar falhas. Acessar dados de custos e prazos para embasar decisões estratégicas.
+
+</td>
 </tr>
 </tbody>
 </table>
 
 
+<table>
+<tbody>
+<tr align=center>
+<th colspan="2">Perfil 2: Gestor de Patrimônio </th>
+</tr>
+<tr>
+<td width="150px"><b>Descrição</b></td>
+<td width="600px"> Responsável por gerenciar e organizar os bens patrimoniais da empresa, garantindo que sejam utilizados corretamente e mantendo um controle rigoroso sobre sua movimentação.   </td>
+</tr>
+<tr>
+<td><b>Necessidades</b></td>
+<td> Acompanhar a localização e movimentação dos bens patrimoniais. 
+Manter um registro atualizado de aquisição, incluindo nota fiscal, valor e data de compra.Monitorar a depreciação dos ativos e planejar substituições.  
+
+</td>  
+</tr>
+</tbody>
+</table>
+
+
+
+<table>
+<tbody>
+<tr align=center>
+<th colspan="2">Perfil 3: Técnico de Manutenção </th>
+</tr>
+<tr>
+<td width="150px"><b> Descrição </b></td>
+<td width="600px">Executar e registrar manutenções preventivas e corretivas nos ativos.</td>
+</tr>
+<tr>
+<td><b>Necessidades</b></td>
+<td>Receber e gerenciar ordens de serviço de manutenção de forma eficiente. Registrar a execução das atividades de manutenção e atualizar o histórico dos equipamentos. Relatar falhas e sugerir melhorias nos processos de manutenção. </td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+<tr align=center>
+<th colspan="2">Perfil 4: Colaborador Usuário </th>
+</tr>
+<tr>
+<td width="150px"><b>Descrição</b></td>
+<td width="600px">Utilizar os equipamentos e solicitar manutenção quando necessário.</td>
+</tr>
+<tr>
+<td><b>Necessidade </b></td>
+<td>Informar falhas ou problemas nos equipamentos de forma rápida e simples. Acompanhar o status das solicitações de manutenção. Ter acesso a informações básicas sobre os equipamentos sob sua responsabilidade. </td>
+</tr>
+</tbody>
+</table>
 ## Histórias de Usuários
 
 [Apresente aqui as histórias de usuários que são relevantes para o projeto da solução.]
