@@ -1,35 +1,32 @@
 # Introdução
 
-[Aqui a equipe deve criar um texto descritivo com a visão geral do problema abordado, apresentando o ambiente e as situações envolvidas no problema.]
+A gestão eficiente de patrimônios empresariais é essencial para garantir a organização, rastreabilidade e manutenção dos patrimônios de uma empresa. Sem um sistema centralizado, as organizações podem enfrentar dificuldades no controle de localização, estado de conservação e planejamento de manutenção, o que pode gerar impactos financeiros e operacionais negativos. O presente projeto, nomeado como PatriControl, visa o desenvolvimento de um sistema web front-end, que proporcionará um monitoramento completo dos bens patrimoniais, garantindo mais segurança, eficiência e transparência na administração dos bens empresariais. 
 
 ## Problema
-[Aqui a equipe deve fornecer uma descrição detalhada do problema a ser resolvido. Não é o momento adequado para abordar questões técnicas relacionadas ao desenvolvimento da aplicação. O objetivo é compreender e comunicar de maneira precisa qual é o desafio ou necessidade que motiva a criação da aplicação.]
-
-Este link pode ajudar a equipe a entender mais sobre definição do problema: [Objetivos, Problema de pesquisa e Justificativa.](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
+Empresas frequentemente enfrentam desafios na gestão patrimonial, incluindo perda de controle sobre a localização dos bens, desconhecimento do estado de conservação e dificuldades no planejamento de manutenção. A falta de um sistema adequado pode gerar prejuízos financeiros e operacionais, além de comprometer auditorias e conformidade fiscal. Dessa forma, a ausência de um controle eficaz impacta negativamente a tomada de decisões e a eficiência organizacional. 
 
 
 ## Objetivos
 
-[Aqui a equipe deve realizar uma descrição detalhada dos objetivos do trabalho, ressaltando quais as questões principais do problema a serem resolvidas pelo projeto, não é a hora de apresentar requisitos detalhados.]
- 
-Este link pode ajudar a equipe a entender mais sobre definição dos objetivos: [Objetivos, Problema de pesquisa e Justificativa.](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
+Objetivo Geral: 
+Desenvolver um sistema web front-end para o gerenciamento de patrimônios empresariais, permitindo um controle centralizado e eficiente dos patrimônios da empresa. 
+
+Objetivos Específicos: 
+Criar um módulo para cadastro e consulta de patrimônios, permitindo um registro detalhado de cada bem; 
+
+Implementar um sistema de rastreamento da localização e status dos bens patrimoniais em tempo real; 
+
+Desenvolver funcionalidades para o gerenciamento e registro de manutenções periódicas, garantindo a longevidade dos ativos; 
+
+Integrar um sistema de relatórios gerenciais que auxilie na tomada de decisão e planejamento estratégico. 
+
+Estabelecer um controle de acesso eficiente, garantindo segurança e integridade das informações patrimoniais. 
 
 ## Justificativa
 
-[Aqui a equipe deve descrever a importância ou a motivação para trabalhar com o problema definido. Indique as razões pelas quais a equipe escolheu o problema e definiu os objetivos.
-
-Devem ser apresentados dados de fontes relevantes e confiáveis sobre o problema, inserindo-o como alvo de estudo. Sugere-se que a equipe utilize questionários, entrevistas e dados estatísticos, que devem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pela equipe.]
-
-Este link pode ajudar a equipe a formular a justificativa: [Como montar a justificativa.](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+A implementação de um sistema informatizado para a gestão de patrimônios reduz erros manuais, otimiza processos e melhora a segurança na administração dos ativos empresariais. Com um controle automatizado, é possível evitar desperdícios, prevenir perdas e aumentar a transparência na gestão patrimonial. Além disso, a ferramenta contribuirá para um planejamento mais estratégico e eficaz dos recursos da empresa. 
 
 ## Público-Alvo
 
-[Aqui é necessário descrever os atores envolvidos no problema, destacando os diferentes perfis de usuários. O propósito é apresentar as características, necessidades, conhecimentos prévios e experiência com a tecnologia do público-alvo.
-
-Sugere-se que a equipe utilize questionários e/ou entrevistas a fim de conhecer os atores que compõem o público alvo.]
-
-Os links abaixo podem ajudar a equipe a conhecer um pouco mais sobre o público-alvo. 
-
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
+O sistema será direcionado a empresas de pequeno, médio e grande porte que necessitam de um controle eficiente sobre seus patrimônios. Os principais usuários incluem gestores administrativos, equipes de manutenção e colaboradores responsáveis pela logística de bens patrimoniais. 
 
