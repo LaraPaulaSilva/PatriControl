@@ -1,6 +1,8 @@
 
 # Projeto de Interface
 
+Dentre as preocupações para a montagem da interface do sistema, estamos estabelecendo foco em questões como agilidade, acessibilidade e usabilidade. Desta forma, o projeto tem uma identidade visual padronizada em todas as telas. Para gerar um melhor entedimento em relação a interface.
+
 ## User Flow
 O user flow da imagem abaixo representa a navegação do usuário pelas telas do sistema. Cada uma dessas telas é explicada na seção de Protótipo de Baixa Fidelidade a seguir. Para acessar o protótipo interativo, disponibilizado <a href="https://miro.com/app/board/uXjVIGqKVFo=/?share_link_id=298110967796" target="_blank">clique aqui</a>.
 
@@ -8,24 +10,66 @@ O user flow da imagem abaixo representa a navegação do usuário pelas telas do
 
 
 
-## Protótipo
+## Wireframes do fluxo do usuario
 
-Desenvolver um protótipo emerge como uma das maneiras mais ágeis e econômicas de validar uma ideia, conceito ou funcionalidade. Isso permite a interação, avaliação, modificação e aprovação das principais características de uma interface antes de entrar na fase de desenvolvimento. Leia o artigo [Protótipos: baixa, média ou alta fidelidade?](https://medium.com/ladies-that-ux-br/prot%C3%B3tipos-baixa-m%C3%A9dia-ou-alta-fidelidade-71d897559135).
+### Tela de Cadastro
 
-### Protótipo de baixa fidelidade
+![1-Tela de Cadastro](https://github.com/user-attachments/assets/337412d0-f487-4941-ab92-8e6914d4ee65)
 
-Protótipos de baixa fidelidade apresentam de forma simplificada o design da interface e o relacionamento entre suas páginas, permitindo evolução da proposta da solução. Neste projeto, os utilizaremos para apoiar a validação dos requisitos e efetuar mudanças dos mesmos, caso seja necessário, para menor impacto na codificação da aplicação.
+A tela de cadastro permitirá cadastrar-se no sistema e para chegar nesta tela basta clicar no botão (Cadastro) no menu.
 
-[Elabore as principais interfaces gráficas da aplicação de modo que os requisitos funcionais sejam contemplados nas telas propostas.]
+### Tela de Login
 
-[Adicione aqui as telas da sua aplicação com seus devidos títulos.] 
- 
-> **Links Úteis**:
-> - [Protótipos vs Wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
->- Ferramentas:
->> - [Pencil](https://pencil.evolus.vn/)
->> - [MarvelApp](https://marvelapp.com/)
->> - [Figma](https://www.figma.com/)
+![2-Tela de Login](https://github.com/user-attachments/assets/136ec008-4a04-40ca-a323-047632a0effc)
 
+A tela de login permitirá logar-se no sistema e para chegar nesta tela basta clicar no botão (Login) no menu.
 
+### Dashboard
+
+![3-Dashboard](https://github.com/user-attachments/assets/e91e1067-926a-487f-938a-793b844fa696)
+
+A tela de dashboard é o painel principal permitindo filtrar, cadastrar um novo patrimonio e também editar um patrimonio.
+Para acessar esta tela você deverá estar logado e clicar no botão (Dashboard) no menu.
+
+### Cadastro de Patrimonios
+
+![4-Cadastro de Patrimonios](https://github.com/user-attachments/assets/0551ab8a-219f-4521-bd2f-049f011fec44)
+
+A tela de Cadastro de Patrimonios permite cadastrar um novo patrimonio.
+Para acessar esta tela você deverá estar logado e clicar no botão (Cadastro de Patrim.) no menu.
+
+### Editar Patrimonios
+
+![5-Editar patrimonios](https://github.com/user-attachments/assets/c5c3ea59-fa61-42da-a9aa-9e2662e0e860)
+
+A tela de Editar Patrimonios permite editar informações e adicionar tramites ao patrimonio selecionado.
+Para acessar esta tela você deverá estar logado e clicar em cima de um nome de patrimonio no dashboard.
+
+### Cadastro de Filial
+
+![6-Cadastro de filial](https://github.com/user-attachments/assets/63021794-964d-47a9-bbda-d9e9eac7a16e)
+
+A tela de Cadastro de Filial permite cadastrar uma nova filial para estar disponivel na hora de criar ou editar um patrimonio.
+Para acessar esta tela você deverá estar logado e clicar no botão (Cadastro de Filial) no menu.
+
+### Cadastro de Tipos de Patrimonios
+
+![7- Cadastro de tipo de patrimonio](https://github.com/user-attachments/assets/fefa7d08-0307-4ddc-a5ac-2a1e9cbc0c7a)
+
+A tela de Cadastro de Tipos de Patrimonios permite cadastrar um novo tipo de patrimonio para estar disponivel na hora de criar ou editar um patrimonio.
+Para acessar esta tela você deverá estar logado e clicar no botão (Cadastro de Tipos de Patrimonios) no menu.
+
+### Minhas Informações
+
+![8-Minhas informações](https://github.com/user-attachments/assets/919ef7ec-1eaf-45bd-8e6f-31f4149c380a)
+
+A tela de Minhas Informações permite consultar seu nome e email cadastrado e adicionar sua foto.
+Para acessar esta tela você deverá estar logado e clicar no botão (Minhas Informações) no menu.
+
+### Alterar Senha
+
+![9-Alterar Senha](https://github.com/user-attachments/assets/48378526-a18a-4934-b267-9ba4a2068cbd)
+
+A tela de Alterar Senha permite o usuário alterar sua senha.
+Para acessar esta tela você deverá estar logado e clicar no botão (Alterar Senha) no menu.
 
