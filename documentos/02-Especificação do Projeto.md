@@ -45,8 +45,18 @@
 
 |ID    | Descrição                | Prioridade |
 |-------|---------------------------------|----|
-| RF-01 |  ...                    | ...   | 
-|  ...  |  ...                    | ...   |
+| RF-01 |  A aplicação deve permitir ao usuário cadastrar uma conta.| Alta   | 
+| RF-02 |  A aplicação deve permitir ao usuário fazer o login da sua conta.                     | Alta  |
+| RF-03 |  A aplicação deve permitir ao usuário fazer o cadastro de patrimônios. | Alta   | 
+| RF-04 |  A aplicação deve oferecer uma funcionalidade de filtro/pesquisa para permitir ao usuário localizar os patrimônios. | Média   | 
+| RF-05 |  A aplicação deve permitir o upload de imagem em cada patrimônio.                     | Baixa   | 
+| RF-06 |  A aplicação deve permitir ao usuário controlar o status dos bens. .                     | Alta   | 
+| RF-07 |  A aplicação deve permitir ao usuário controlar trâmites feitos no patrimônio. | Média   | 
+| RF-08 |  A aplicação deve permitir ao usuário cadastrar localizações.                     | Alta   
+|RF-09|A aplicação deve permitir ao usuário cadastrar fornecedores.  | Media |
+| RF-10| A aplicação deve permitir ao usuário cadastrar manutenções no patrimônio. |  Média|
+|RF-11 | aplicação deve permitir ao usuário cadastrar manutenções no patrimônio. | Média|
+|RF-12|A aplicação deve permitir ao usuário inserir informações da comprar do patrimônio.  | Média|
 
 **Prioridade: Alta / Média / Baixa. 
 
