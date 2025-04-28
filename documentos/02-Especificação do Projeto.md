@@ -104,10 +104,11 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 | RF-06 |  A aplicação deve permitir ao usuário controlar o status dos bens. .                     | Alta   | 
 | RF-07 |  A aplicação deve permitir ao usuário controlar trâmites feitos no patrimônio. | Média   | 
 | RF-08 |  A aplicação deve permitir ao usuário cadastrar localizações.                     | Alta   
-|RF-09|A aplicação deve permitir ao usuário cadastrar fornecedores.  | Media |
+|RF-09| A aplicação deve permitir ao usuário cadastrar fornecedores.  | Media |
 | RF-10| A aplicação deve permitir ao usuário cadastrar manutenções no patrimônio. |  Média|
 |RF-11 | A aplicação deve permitir ao usuário editar o patrimônio. | Média|
-|RF-12|A aplicação deve permitir ao usuário inserir informações da comprar do patrimônio.  | Média|
+|RF-12| A aplicação deve permitir ao usuário inserir informações da comprar do patrimônio.  | Média|
+|RF-13| A aplicação deve permitir ao usuário cadastrar o tipo de patrimônio.  | Média|
 
 **Prioridade: Alta / Média / Baixa. 
 
