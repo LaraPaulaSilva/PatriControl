@@ -96,7 +96,7 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 |ID    | Descrição                | Prioridade |
 |-------|---------------------------------|----|
-| RF-01 |  A aplicação deve permitir ao usuário cadastrar uma conta.| Alta   | 
+| RF-01 |  A aplicação deve permitir ao Administrador cadastrar uma conta.| Alta   | 
 | RF-02 |  A aplicação deve permitir ao usuário fazer o login da sua conta.                     | Alta  |
 | RF-03 |  A aplicação deve permitir ao usuário fazer o cadastro de patrimônios. | Alta   | 
 | RF-04 |  A aplicação deve oferecer uma funcionalidade de filtro/pesquisa para permitir ao usuário localizar os patrimônios. | Média   | 
