@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Patrimônio</title>
+    <style>
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color:  #E2E2D5; display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background-color: #dfdbdb; border-right: 1px solid black; padding: 20px; display: flex; flex-direction: column; }
+        .sidebar h2 { font-size: 30px; margin-bottom: 30px; color: #215A60; text-align: center; }
+        .sidebar button { background-color: #215A60; color: white; border: none; padding: 10px; border-radius: 10px; margin-bottom: 30px; cursor: pointer; }
+        .sidebar h3 { font-size: 20px; margin-top: 20px; color: #215A60; }
+        .sidebar a { display: block; margin: 8px 0; color: #4D8586; text-decoration: none; font-size: 14px; padding-left: 10px; }
+        .sidebar a:hover { text-decoration: underline; }
+        .content { flex: 1; padding: 40px; }
+        .content h1 { font-size: 28px; margin-bottom: 30px; color: #215A60; }
+        .form-container { background-color: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .form-group { display: flex; flex-direction: column; position: relative; }
+        .form-group label { font-size: 14px; margin-bottom: 5px; color: #555; }
+        input, select { padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+        .field-actions { margin-top: 5px; display: flex; gap: 8px; }
+        .field-actions img { width: 24px; height: 24px; cursor: pointer; }
+        .upload-section { grid-column: span 2; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+        .upload-section button { background-color: #215A60; color: white; border: none; padding: 10px 20px; margin-bottom: 15px; border-radius: 6px; cursor: pointer; }
+        .upload-preview { width: 100%; height: 200px; border: 2px dashed #ccc; display: flex; justify-content: center; align-items: center; color: #999; font-size: 14px; border-radius: 6px; }
+        .modal { display: none; position: fixed; z-index: 10; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal-content { background: #fff; padding: 20px; border-radius: 8px; width: 300px; text-align: center; }
+        .modal-content input, .modal-content select { width: 100%; margin-top: 10px; }
+        .modal-content button { margin-top: 15px; padding: 8px 20px; background-color: #28a745; border: none; color: #fff; border-radius: 5px; cursor: pointer; }
+        .close-btn { background-color: #e94152; margin-top: 10px; }
+        .confirm-buttons { display: flex; justify-content: space-around; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Cadastro de Patrimônios</h2>
+    <button>Logo</button>
+    <h3>Meu Perfil</h3>
+    <a href="info.html" >Minhas Informações</a>
+    <a href="alterarsenha.html" >Alterar senha</a>
+    <a href="#">Logoff</a>
+    <h3>Dashboard</h3>
+    <a href="#">Dashboard</a>
+
+</div>
+
+<div class="content">
+    <h1>Cadastro de Patrimônio</h1>
+    <div class="form-container">
+        <form class="form-grid">
+    
+            <div class="form-group">
+                <label>Nº Patrimônio</label>
+                <input type="text" id="numPatrimonioInput" placeholder="Digite o número do patrimônio">
+                <div class="field-actions">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" title="Adicionar" onclick="openModal('numpatrimonio', 'add')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" title="Editar" onclick="openModal('numpatrimonio', 'edit')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" title="Excluir" onclick="openModal('numpatrimonio', 'delete')">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Nome do Patrimônio</label>
+                <input type="text" id="nomePatrimonioInput" placeholder="Digite o nome do patrimônio">
+                <div class="field-actions">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" title="Adicionar" onclick="openModal('nome', 'add')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" title="Editar" onclick="openModal('nome', 'edit')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" title="Excluir" onclick="openModal('nome', 'delete')">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Filial</label>
+                <select id="filialSelect">
+                    <option>Selecione a filial</option>
+                    <option>Filial São Paulo</option>
+                    <option>Filial Rio de Janeiro</option>
+                    <option>Filial Belo Horizonte</option>
+                </select>
+                <div class="field-actions">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" title="Adicionar" onclick="openModal('filial', 'add')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" title="Editar" onclick="openModal('filial', 'edit')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" title="Excluir" onclick="openModal('filial', 'delete')">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Tipo de Patrimônio</label>
+                <select id="tipoSelect">
+                    <option>Selecione o tipo</option>
+                    <option>Computador</option>
+                    <option>Mesa</option>
+                    <option>Cadeira</option>
+                    <option>Impressora</option>
+                    <option>Monitor</option>
+                </select>
+                <div class="field-actions">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" title="Adicionar" onclick="openModal('tipo', 'add')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" title="Editar" onclick="openModal('tipo', 'edit')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" title="Excluir" onclick="openModal('tipo', 'delete')">
+                </div>
+            </div>
+
+           
+            <div class="form-group">
+                <label>Status</label>
+                <select id="statusSelect">
+                    <option>Selecione o status</option>
+                    <option>Ativo</option>
+                    <option>Manutenção</option>
+                    <option>Inativo</option>
+                    <option>Descartado</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Valor da Compra</label>
+                <input type="number" id="valorCompraInput" placeholder="Digite o valor da compra" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label>Número da Nota Fiscal (NF)</label>
+                <input type="text" id="numeroNfInput" placeholder="Digite o número da NF">
+            </div>
+
+            <div class="form-group">
+                <label>Data da Compra</label>
+                <input type="date" id="dataCompraInput">
+            </div>
+
+           
+            <div class="upload-section">
+                <button type="button">Upload de imagem</button>
+                <div class="upload-preview">Pré-visualização da imagem</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h3 id="modalTitle">Adicionar</h3>
+        <input type="text" id="modalInput" placeholder="Digite o novo valor">
+        <select id="modalSelect" style="display: none;"></select>
+        <div id="confirmDelete" style="display: none;">
+            <p>Tem certeza que deseja excluir este item?</p>
+            <div class="confirm-buttons">
+                <button onclick="deleteItem(true)">Sim</button>
+                <button class="close-btn" onclick="deleteItem(false)">Não</button>
+            </div>
+        </div>
+        <button id="confirmBtn" onclick="confirmAction()">Confirmar</button>
+        <button class="close-btn" onclick="closeModal()">Fechar</button>
+    </div>
+</div>
+
+<script>
+  
+    let currentField = '';
+    let actionType = '';
+
+    function openModal(field, action) {
+        currentField = field;
+        actionType = action;
+        document.getElementById('modal').style.display = 'flex';
+
+        document.getElementById('modalInput').style.display = action === 'add' || action === 'edit' ? 'block' : 'none';
+        document.getElementById('modalSelect').style.display = action === 'edit' ? 'block' : 'none';
+        document.getElementById('confirmDelete').style.display = action === 'delete' ? 'block' : 'none';
+        document.getElementById('confirmBtn').style.display = action !== 'delete' ? 'inline-block' : 'none';
+
+        if (action === 'add') {
+            document.getElementById('modalTitle').innerText = 'Adicionar ' + field;
+        } else if (action === 'edit') {
+            document.getElementById('modalTitle').innerText = 'Editar ' + field;
+            const select = document.getElementById(field + 'Select');
+            const modalSelect = document.getElementById('modalSelect');
+            modalSelect.innerHTML = '';
+            for (let opt of select.options) {
+                if (!opt.disabled && opt.value !== 'Selecione a filial' && opt.value !== 'Selecione o tipo' && opt.value !== 'Selecione o status') {
+                    modalSelect.add(new Option(opt.text, opt.value));
+                }
+            }
+        } else {
+            document.getElementById('modalTitle').innerText = 'Excluir ' + field;
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    function confirmAction() {
+        const value = document.getElementById('modalInput').value;
+        if (actionType === 'add') {
+            if (currentField === 'nome') {
+                document.getElementById('nomePatrimonioInput').value = value;
+            } else {
+                const select = document.getElementById(currentField + 'Select');
+                const option = new Option(value, value);
+                select.add(option);
+                select.value = value;
+            }
+        } else if (actionType === 'edit') {
+            const selectField = document.getElementById(currentField + 'Select');
+            const modalSelect = document.getElementById('modalSelect');
+            if (modalSelect.value) {
+                for (let opt of selectField.options) {
+                    if (opt.value === modalSelect.value) {
+                        opt.text = value;
+                        opt.value = value;
+                        break;
+                    }
+                }
+            }
+        }
+        closeModal();
+    }
+
+    function deleteItem(confirm) {
+        if (confirm) {
+            const selectField = document.getElementById(currentField + 'Select');
+            const selected = selectField.selectedIndex;
+            if (selected > 0) {
+                selectField.remove(selected);
+            }
+        }
+        closeModal();
+    }
+</script>
+
+</body>
+</html>
