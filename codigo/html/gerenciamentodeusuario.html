@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Usuários - Sistema Patrimonial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/codigo/css/sidebar.css">
+  <link rel="stylesheet" href="/codigo/css/gerenciamentodeusuario.css">
+</head>
+<body>
+  <!-- Container da Sidebar -->
+  <div id="sidebar-container"></div>
+
+  <!-- Conteúdo Principal -->
+  <div class="dashboard-container">
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Gerenciamento de Usuários</h1>
+        <div class="user-welcome">
+          <span>Bem-vindo, <strong>Admin</strong></span>
+        </div>
+      </header>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Cargo</th>
+              <th>Filial</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>USR-001</td>
+              <td>João Silva</td>
+              <td>joao.silva@empresa.com</td>
+              <td>Administrador</td>
+              <td>Matriz - São Paulo</td>
+              <td><span class="status-badge active">Ativo</span></td>
+              <td>
+                <a href="editarusuario.html" class="action-btn edit">Editar</a>
+              </td>
+            </tr>
+            <tr>
+              <td>USR-002</td>
+              <td>Maria Oliveira</td>
+              <td>maria.oliveira@empresa.com</td>
+              <td>Gestor</td>
+              <td>Rio de Janeiro</td>
+              <td><span class="status-badge inactive">Inativo</span></td>
+              <td>
+                <a href="#" class="action-btn edit">Editar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Carrega o conteúdo da sidebar -->
+  <script src="/codigo/js/sidebar.js"></script>
+</body>
+</html>

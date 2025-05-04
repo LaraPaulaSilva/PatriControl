@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PatriControl - Sistema de Gestão Patrimonial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/codigo/css/sidebar.css">
+    <link rel="stylesheet" href="/codigo/css/alterarsenha.css">
+</head>
+<body>
+  <!-- Container da Sidebar (será preenchido via JavaScript) -->
+  <div id="sidebar-container"></div>
+
+  <!-- Conteúdo Principal -->
+  <div class="dashboard-container">
+    <div class="form-container">
+      <h1>Alteração de Senha</h1>
+      
+      <!-- Notificação -->
+      <div id="notification" class="notification hidden">
+        <div class="notification-content">
+          <span class="notification-message">Senha alterada com sucesso!</span>
+        </div>
+      </div>
+
+      <form id="alterarSenhaForm">
+        <div class="form-group">
+          <label for="senhaAtual">Senha Atual</label>
+          <input type="password" id="senhaAtual" placeholder="Digite sua senha atual" required>
+        </div>
+
+        <div class="form-group">
+          <label for="novaSenha">Nova Senha</label>
+          <input type="password" id="novaSenha" placeholder="Digite sua nova senha" required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmarSenha">Confirmar Nova Senha</label>
+          <input type="password" id="confirmarSenha" placeholder="Confirme sua nova senha" required>
+          <div class="error-message">As senhas não coincidem. Tente novamente.</div>
+        </div>
+
+        <button type="submit">Alterar Senha</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Carrega o conteúdo da sidebar -->
+  <script src="/codigo/js/sidebar.js"></script>
+  <script>
+    document.getElementById('alterarSenhaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const novaSenha = document.getElementById('novaSenha').value;
+      const confirmarSenha = document.getElementById('confirmarSenha').value;
+      const errorMessage = document.querySelector('.error-message');
+      const notification = document.getElementById('notification');
+      
+      if (novaSenha !== confirmarSenha) {
+        errorMessage.style.display = 'block';
+        notification.classList.add('hidden');
+      } else {
+        errorMessage.style.display = 'none';
+        
+        // Mostra notificação
+        notification.classList.remove('hidden');
+        
+        // Esconde após 3 segundos
+        setTimeout(() => {
+          notification.classList.add('hidden');
+        }, 3000);
+        
+        // Limpa formulário
+        this.reset();
+      }
+    });
+  </script>
+</body>
+</html>

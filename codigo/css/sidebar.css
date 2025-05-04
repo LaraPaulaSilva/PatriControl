@@ -1,0 +1,121 @@
+:root {
+    --azul-escuro: #003366;
+    --azul-medio: #005b9f;
+    --branco: #ffffff;
+    --fonte-principal: 'Segoe UI', Roboto, Arial, sans-serif;
+    --peso-negrito: 600;
+  }
+  
+  .sidebar {
+    width: 280px;
+    background: var(--azul-escuro);
+    color: var(--branco);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+  
+  .logo-area {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--azul-medio);
+    text-align: center;
+  }
+  
+  .logo-area h2 {
+    font-weight: var(--peso-negrito);
+    font-size: 1.4rem;
+  }
+  
+  .sidebar-nav {
+    padding: 1.5rem 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menu-group {
+    margin-bottom: 0.5rem;
+  }
+  
+  .menu-toggle {
+    display: none;
+  }
+  
+  .menu-toggle-label {
+    width: 100%;
+    background: transparent;
+    color: var(--branco);
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .menu-toggle-label:hover {
+    background: var(--azul-medio);
+  }
+  
+  .arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+    transform: rotate(0deg); /* Padrão (fechado) - para baixo */
+  }
+  
+  .menu-single {
+    display: block;
+    color: var(--branco);
+    padding: 0.9rem 1.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  
+  .menu-single:hover, 
+  .menu-single.active {
+    background: var(--azul-medio);
+    font-weight: var(--peso-negrito);
+  }
+  
+  .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-toggle:checked + .menu-toggle-label + .submenu {
+    max-height: 500px;
+  }
+  
+  .menu-toggle:checked + .menu-toggle-label .arrow {
+    transform: rotate(180deg); /* Aberto - para cima */
+  }
+  
+  .submenu a {
+    display: block;
+    color: var(--branco);
+    padding: 0.7rem 1.5rem 0.7rem 2.5rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  
+  .submenu a:hover {
+    background: var(--azul-medio);
+    padding-left: 3rem;
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+  }

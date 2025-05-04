@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/codigo/css/sidebar.css">
+  <link rel="stylesheet" href="/codigo/css/cadastrarpatrimonio.css">
+</head>
+<body>
+  <!-- Container da Sidebar -->
+  <div id="sidebar-container"></div>
+
+  <!-- Conteúdo Principal -->
+  <div class="dashboard-container">
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Cadastro de Patrimônio</h1>
+        <div class="user-welcome">
+          <span>Bem-vindo, <strong>Admin</strong></span>
+        </div>
+      </header>
+
+      <div id="notification" class="notification hidden">
+        <div class="notification-content">
+          <span class="notification-message">Patrimônio cadastrado com sucesso!</span>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <form id="cadastroForm">
+          <!-- Linha 1 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patrimonioNum">Nº Patrimônio</label>
+              <input type="text" id="patrimonioNum" placeholder="Nº Patrimônio">
+            </div>
+            <div class="form-group">
+              <label for="nomePatrimonio">Nome do Patrimônio</label>
+              <input type="text" id="nomePatrimonio" placeholder="Nome do patrimônio">
+            </div>
+          </div>
+
+          <!-- Linha 2 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="filial">Filial</label>
+              <div class="select-add-group">
+                <select id="filial"><option value="">Selecione</option></select>
+                <button type="button" class="add-btn">+</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="tipo">Tipo de Patrimônio</label>
+              <div class="select-add-group">
+                <select id="tipo"><option value="">Selecione</option></select>
+                <button type="button" class="add-btn">+</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="fornecedor">Fornecedor</label>
+              <div class="select-add-group">
+                <select id="fornecedor"><option value="">Selecione</option></select>
+                <button type="button" class="add-btn">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Linha 3 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="notaFiscal">Nº NF</label>
+              <input type="text" id="notaFiscal" placeholder="Nº NF">
+            </div>
+            <div class="form-group">
+              <label for="dataCompra">Data da Compra</label>
+              <input type="date" id="dataCompra">
+            </div>
+            <div class="form-group">
+              <label for="valorCompra">Valor da compra</label>
+              <input type="text" id="valorCompra" placeholder="R$ 0,00">
+            </div>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select id="status"><option value="">Selecione</option></select>
+            </div>
+          </div>
+
+          <!-- Upload de Imagem -->
+          <div class="form-row center">
+            <div class="form-group upload-group">
+              <label>Imagem do Patrimônio</label>
+              <div class="upload-container">
+                <button type="button" class="upload-btn">Upload de imagem</button>
+                <div class="upload-area">Pré-visualização da imagem</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botões de Ação -->
+          <div class="form-row actions">
+            <a href="dashboard.html" class="btn cancel">Cancelar</a>
+            <button type="submit" class="btn save">Cadastrar Patrimônio</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Carrega o conteúdo da sidebar -->
+  <script src="/codigo/js/sidebar.js"></script>
+  <script>
+    document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const notification = document.getElementById('notification');
+      
+      // Mostra notificação
+      notification.classList.remove('hidden');
+      
+      // Esconde após 3 segundos
+      setTimeout(() => {
+        notification.classList.add('hidden');
+      }, 3000);
+      
+      // Limpa formulário
+      this.reset();
+    });
+  </script>
+</body>
+</html>

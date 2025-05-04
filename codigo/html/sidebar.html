@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <link rel="stylesheet" href="/codigo/css/sidebar.css">
+</head>
+<body>
+  <!-- Componente de Sidebar -->
+  <aside class="sidebar">
+    <div class="logo-area">
+      <h2>PatriControl</h2>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!-- Dropdown Meu Perfil -->
+      <div class="menu-group">
+        <input type="checkbox" id="menu-perfil" class="menu-toggle" aria-expanded="false">
+        <label for="menu-perfil" class="menu-toggle-label" aria-haspopup="true">
+          Meu Perfil
+          <span class="arrow" aria-hidden="true">▼</span>
+        </label>
+        <div class="submenu" role="menu">
+          <a href="informacoespessoais.html" role="menuitem">Minhas Informações</a>
+          <a href="alterarsenha.html" role="menuitem">Alterar Senha</a>
+          <a href="signin.html" role="menuitem">Sair</a>
+        </div>
+      </div>
+
+      <!-- Link Direto -->
+      <a href="dashboard.html" class="menu-single" aria-current="page">
+        Dashboard
+      </a>
+
+      <!-- Dropdown Administrador -->
+      <div class="menu-group">
+        <input type="checkbox" id="menu-admin" class="menu-toggle" aria-expanded="false">
+        <label for="menu-admin" class="menu-toggle-label" aria-haspopup="true">
+          Administrador
+          <span class="arrow" aria-hidden="true">▼</span>
+        </label>
+        <div class="submenu" role="menu">
+          <a href="cadastrarusuario.html" role="menuitem">Cadastrar Usuário</a>
+          <a href="gerenciamentodeusuario.html" role="menuitem">Gerenciar Usuários</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Rodapé da Sidebar -->
+    <div class="sidebar-footer">
+      <p class="version">Versão 1.0.0</p>
+    </div>
+  </aside>
+
+  <!-- Script opcional para funcionalidades extras -->
+  <script>
+    // Adiciona classe 'loaded' após carregamento para transições CSS
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.sidebar').classList.add('loaded');
+    });
+  </script>
+</body>
+</html>

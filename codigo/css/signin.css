@@ -1,0 +1,107 @@
+:root {
+  --azul-escuro: #003366;
+  --azul-medio: #005b9f;
+  --azul-claro: #e6f2ff;
+  --branco: #ffffff;
+  --cinza-claro: #f8f9fa;
+  --sombra: 0 4px 12px rgba(0, 91, 159, 0.15);
+}
+
+body {
+  background: var(--azul-claro);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+.card {
+  background: var(--branco);
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: var(--sombra);
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  border-top: 4px solid var(--azul-escuro);
+}
+
+h1 {
+  color: var(--azul-escuro);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.label-float {
+  position: relative;
+  margin-bottom: 1.8rem;
+}
+
+.label-float input {
+  width: 100%;
+  padding: 1rem 0;
+  border: none;
+  border-bottom: 2px solid var(--azul-medio);
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+}
+
+.label-float label {
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  color: var(--azul-medio);
+  transition: all 0.3s ease-out;
+  pointer-events: none;
+}
+
+.label-float input:focus + label,
+.label-float input:valid + label {
+  top: -0.8rem;
+  font-size: 0.85rem;
+  color: var(--azul-escuro);
+}
+
+button {
+  background: var(--azul-escuro);
+  color: white;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-weight: 600;
+}
+
+button:hover {
+  background: var(--azul-medio);
+}
+
+.footer-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--azul-escuro);
+  font-size: 0.9rem;
+}
+
+.footer-link {
+  color: var(--azul-medio);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}

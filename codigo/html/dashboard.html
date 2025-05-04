@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/codigo/css/sidebar.css">
+  <link rel="stylesheet" href="/codigo/css/dashboard.css">
+</head>
+<body>
+  <!-- Container da Sidebar (será preenchido via JavaScript) -->
+  <div id="sidebar-container"></div>
+
+  <!-- Conteúdo Principal -->
+  <div class="dashboard-container">
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Gestão de Patrimônios</h1>
+        <div class="user-welcome">
+          <span>Bem-vindo, <strong>Admin</strong></span>
+        </div>
+      </header>
+
+      <!-- Barra de Pesquisa -->
+      <div class="search-container">
+        <div class="search-bar">
+          <div class="search-group">
+            <input type="text" placeholder="Nº Patrimônio">
+          </div>
+          <div class="search-group">
+            <input type="text" placeholder="Nome do Patrimônio">
+          </div>
+          <div class="search-group">
+            <select>
+              <option value="">Todas Filiais</option>
+              <option>São Paulo</option>
+              <option>Rio de Janeiro</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <select>
+              <option value="">Todos Tipos</option>
+              <option>Computador</option>
+              <option>Móvel</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <select>
+              <option value="">Todos Fornecedores</option>
+              <option>Fornecedor A</option>
+              <option>Fornecedor B</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <select>
+              <option value="">Todos Status</option>
+              <option>Ativo</option>
+              <option>Manutenção</option>
+            </select>
+          </div>
+          
+          <div class="search-buttons">
+            <button class="search-btn">Filtrar</button>
+            <button class="reset-btn">Limpar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão de Adicionar Patrimônio -->
+      <div class="add-asset-container">
+        <a href="cadastrarpatrimonio.html" class="add-asset-btn">
+          <span>+</span> Adicionar Patrimônio
+        </a>
+      </div>
+
+      <!-- Tabela de Patrimônios -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nº Patrimônio</th>
+              <th>Nome</th>
+              <th>Filial</th>
+              <th>Tipo</th>
+              <th>Fornecedor</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PAT-2023-001</td>
+              <td>Notebook Dell i7</td>
+              <td>São Paulo</td>
+              <td>Computador</td>
+              <td>Fornecedor A</td>
+              <td><span class="status-badge active">Ativo</span></td>
+              <td>
+                <a href="editarpatrimonio.html" class="action-btn edit">Editar</a>
+              </td>
+            </tr>
+            <tr>
+              <td>PAT-2023-002</td>
+              <td>Mesa Executiva</td>
+              <td>Rio de Janeiro</td>
+              <td>Móvel</td>
+              <td>Fornecedor B</td>
+              <td><span class="status-badge maintenance">Manutenção</span></td>
+              <td>
+                <a href="editarpatrimonio.html" class="action-btn edit">Editar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Carrega o conteúdo da sidebar -->
+  <script src="/codigo/js/sidebar.js"></script>
+</body>
+</html>

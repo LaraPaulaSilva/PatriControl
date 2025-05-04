@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/codigo/css/sidebar.css">
+  <link rel="stylesheet" href="/codigo/css/cadastrarusuario.css">
+</head>
+<body>
+  <!-- Container da Sidebar -->
+  <div id="sidebar-container"></div>
+
+  <!-- Conteúdo Principal -->
+  <div class="dashboard-container">
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Cadastrar Novo Usuário</h1>
+        <div class="user-welcome">
+          <span>Bem-vindo, <strong>Admin</strong></span>
+        </div>
+      </header>
+
+      <div id="notification" class="notification hidden">
+        <div class="notification-content">
+          <span class="notification-message">Usuário cadastrado com sucesso!</span>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <form id="cadastroUsuarioForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nomeCompleto">Nome Completo</label>
+              <input type="text" id="nomeCompleto" placeholder="Digite o nome completo" required>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" placeholder="Digite o e-mail" required>
+              <div class="error-message" id="emailError">E-mail inválido ou já cadastrado</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cargo">Cargo</label>
+              <select id="cargo" required>
+                <option value="">Selecione o cargo</option>
+                <option value="administrador">Administrador</option>
+                <option value="gestor">Gestor</option>
+                <option value="colaborador">Colaborador</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="filial">Filial</label>
+              <select id="filial" required>
+                <option value="">Selecione a filial</option>
+                <option value="matriz">Matriz - São Paulo</option>
+                <option value="rj">Rio de Janeiro</option>
+                <option value="bh">Belo Horizonte</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" placeholder="Digite a senha" required>
+            </div>
+            <div class="form-group">
+              <label for="confirmarSenha">Confirmar Senha</label>
+              <input type="password" id="confirmarSenha" placeholder="Confirme a senha" required>
+              <div class="error-message" id="senhaError">As senhas não coincidem</div>
+            </div>
+          </div>
+
+          <div class="form-row actions">
+            <a href="/gerenciamentodeusuario.html" class="btn cancel">Cancelar</a>
+            <button type="submit" class="btn save">Cadastrar Usuário</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="/codigo/js/sidebar.js"></script>
+  <script>
+    document.getElementById('cadastroUsuarioForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const senha = document.getElementById('senha').value;
+      const confirmarSenha = document.getElementById('confirmarSenha').value;
+      const senhaError = document.getElementById('senhaError');
+      const emailError = document.getElementById('emailError');
+      const notification = document.getElementById('notification');
+      
+      // Esconde mensagens de erro
+      senhaError.style.display = 'none';
+      emailError.style.display = 'none';
+      
+      if (senha !== confirmarSenha) {
+        senhaError.style.display = 'block';
+      } else {
+        // Mostra notificação
+        notification.classList.remove('hidden');
+        
+        // Esconde após 3 segundos
+        setTimeout(() => {
+          notification.classList.add('hidden');
+        }, 3000);
+        
+        // Limpa formulário
+        this.reset();
+      }
+    });
+  </script>
+</body>
+</html>

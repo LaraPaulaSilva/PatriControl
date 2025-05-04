@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/codigo/css/sidebar.css">
+  <link rel="stylesheet" href="/codigo/css/informacoespessoais.css">
+</head>
+<body>
+  <!-- Container da Sidebar -->
+  <div id="sidebar-container"></div>
+
+  <!-- Conteúdo Principal -->
+  <div class="dashboard-container">
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Minhas Informações</h1>
+        <div class="user-welcome">
+          <span>Bem-vindo, <strong>Admin</strong></span>
+        </div>
+      </header>
+
+      <div class="profile-container">
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-photo">
+              <div class="avatar-placeholder">
+                <svg viewBox="0 0 24 24" width="80" height="80">
+                  <circle cx="12" cy="8" r="5" fill="#005b9f"/>
+                  <path d="M12 14c-4.42 0-8 2.69-8 6v2h16v-2c0-3.31-3.58-6-8-6z" fill="#005b9f"/>
+                </svg>
+              </div>
+              <button class="edit-photo-btn">Alterar Foto</button>
+            </div>
+            <div class="profile-info">
+              <h2 id="nome">Carlos Silva</h2>
+              <p id="cargo">Administrador do Sistema</p>
+            </div>
+          </div>
+
+          <div class="profile-details">
+            <div class="detail-group">
+              <h3>Informações Pessoais</h3>
+              <div class="detail-item">
+                <span class="detail-label">Código do Usuário:</span>
+                <span class="detail-value" id="codigo">USR-2023-001</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">E-mail:</span>
+                <span class="detail-value" id="email">carlos.silva@empresa.com</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Filial:</span>
+                <span class="detail-value" id="filial">Matriz - São Paulo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Carrega o conteúdo da sidebar -->
+  <script src="/codigo/js/sidebar.js"></script>
+</body>
+</html>
