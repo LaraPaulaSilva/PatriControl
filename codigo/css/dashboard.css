@@ -1,5 +1,9 @@
+/* dashboard.css */
+
+/* --------------------
+   Variáveis de tema 
+-------------------- */
 :root {
-  /* Cores */
   --azul-escuro: #003366;
   --azul-medio: #005b9f;
   --azul-claro: #e6f2ff;
@@ -9,311 +13,230 @@
   --verde: #28a745;
   --amarelo: #ffc107;
   --vermelho: #dc3545;
+  --sombra: 0 2px 8px rgba(0,0,0,0.1);
 
-  /* Tipografia */
   --fonte-principal: 'Segoe UI', Roboto, Arial, sans-serif;
   --peso-normal: 400;
   --peso-negrito: 600;
 }
 
-/* Reset e Base */
+/* --------------------
+   Reset & Base
+-------------------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: var(--fonte-principal);
   font-weight: var(--peso-normal);
+  background: var(--azul-claro);
   color: #333;
-  background-color: var(--azul-claro);
 }
 
-/* Layout Principal */
+/* --------------------
+   Layout Principal
+-------------------- */
 .dashboard-container {
-  margin-left: 280px;
+  margin-left: 280px;       /* Espaço para a sidebar */
   min-height: 100vh;
-  transition: margin-left 0.3s;
+  transition: margin-left .3s;
 }
-
-/* Conteúdo Principal */
 .main-content {
   padding: 2rem 3rem;
 }
 
-/* Cabeçalho */
+/* --------------------
+   Cabeçalho
+-------------------- */
 .content-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
 }
-
 .content-header h1 {
   font-size: 1.8rem;
   font-weight: var(--peso-negrito);
   color: var(--azul-escuro);
 }
-
 .user-welcome {
   color: var(--azul-escuro);
-  font-size: 0.95rem;
+  font-size: .95rem;
 }
-
 .user-welcome strong {
   font-weight: var(--peso-negrito);
 }
 
-/* Barra de Pesquisa - Versão Organizada */
+/* --------------------
+   Filtros
+-------------------- */
 .search-container {
   background: var(--branco);
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--sombra);
   margin-bottom: 2rem;
 }
-
 .search-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
-
 .search-group {
   display: flex;
   flex-direction: column;
 }
-
-.search-group:nth-child(1) { grid-column: 1; }
-.search-group:nth-child(2) { grid-column: 2; }
-.search-group:nth-child(3) { grid-column: 3; }
-.search-group:nth-child(4) { grid-column: 4; }
-.search-group:nth-child(5) { grid-column: 1; }
-.search-group:nth-child(6) { grid-column: 2; }
-
-.search-buttons {
-  grid-column: 3 / span 2;
-  display: flex;
-  gap: 1rem;
-  align-self: end;
+.search-group label {
+  font-size: .85rem;
+  margin-bottom: .3rem;
+  color: var(--azul-escuro);
+  font-weight: var(--peso-negrito);
 }
-
-.search-bar input,
-.search-bar select {
-  width: 100%;
-  padding: 0.7rem;
+.search-group input,
+.search-group select {
+  padding: .7rem;
   border: 1px solid var(--cinza-borda);
   border-radius: 6px;
-  font-size: 0.9rem;
-  font-family: var(--fonte-principal);
+  font-size: .9rem;
 }
-
-.search-bar input:focus,
-.search-bar select:focus {
+.search-group input:focus,
+.search-group select:focus {
   outline: none;
   border-color: var(--azul-medio);
-  box-shadow: 0 0 0 2px rgba(0, 91, 159, 0.2);
+  box-shadow: 0 0 0 2px rgba(0,91,159,0.2);
 }
 
-/* Botões */
-.search-btn,
-.reset-btn {
-  flex: 1;
-  padding: 0.6rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: var(--peso-negrito);
-  font-family: var(--fonte-principal);
-  transition: all 0.2s;
+/* Botão limpar */
+.search-group.actions {
+  grid-column: 4;
+  grid-row: 2;
+  justify-self: end;
+  align-self: end;
 }
-
-.search-btn {
-  background: var(--azul-escuro);
-  color: white;
-  border: none;
-}
-
 .reset-btn {
   background: var(--branco);
   color: var(--azul-escuro);
   border: 1px solid var(--azul-escuro);
+  padding: .6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .2s;
 }
-
-.search-btn:hover {
-  background: var(--azul-medio);
-}
-
 .reset-btn:hover {
   background: var(--azul-claro);
 }
 
-/* Tabela */
+/* --------------------
+   Botão Adicionar
+-------------------- */
+.add-asset-container {
+  margin-bottom: 2rem;
+}
+.add-asset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--azul-escuro);
+  color: var(--branco);
+  padding: .6rem 1rem;
+  border-radius: 6px;
+  font-weight: var(--peso-negrito);
+  text-decoration: none;
+  transition: background .2s;
+}
+.add-asset-btn span {
+  font-size: 1.2rem;
+}
+.add-asset-btn:hover {
+  background: var(--azul-medio);
+}
+
+/* --------------------
+   Tabela de Dados
+-------------------- */
 .table-container {
   background: var(--branco);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--sombra);
   overflow-x: auto;
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: .9rem;
 }
-
 th, td {
   padding: 1rem;
-  text-align: left;
   border-bottom: 1px solid var(--cinza-borda);
+  text-align: left;
 }
-
 th {
-  background: var(--azul-claro);
+  background: var(--cinza-claro);
   color: var(--azul-escuro);
   font-weight: var(--peso-negrito);
   position: sticky;
   top: 0;
 }
-
 tr:hover {
-  background-color: #f9f9f9;
+  background: #f9f9f9;
 }
 
-/* Badges */
+/* --------------------
+   Badges de Status
+-------------------- */
 .status-badge {
   display: inline-block;
-  padding: 0.3rem 0.8rem;
+  padding: .3rem .8rem;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: .8rem;
   font-weight: var(--peso-negrito);
-  text-align: center;
-  min-width: 70px;
 }
+.status-badge.active     { background: #e6f7ee; color: var(--verde); }
+.status-badge.maintenance{ background: #fff8e6; color: var(--amarelo); }
+.status-badge.inactive   { background: #fee;     color: var(--vermelho); }
 
-.status-badge.active {
-  background: #e6f7ee;
-  color: var(--verde);
-}
-
-.status-badge.maintenance {
-  background: #fff8e6;
-  color: var(--amarelo);
-}
-
-.status-badge.inactive {
-  background: #fee;
-  color: var(--vermelho);
-}
-
-/* Botões de Ação */
+/* --------------------
+   Botões de Ação
+-------------------- */
 .action-btn {
-  padding: 0.4rem 0.8rem;
+  padding: .4rem .8rem;
   border: none;
   border-radius: 4px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  margin-right: 0.3rem;
-  font-family: var(--fonte-principal);
+  font-size: .8rem;
   font-weight: var(--peso-negrito);
-  transition: all 0.2s;
-  text-decoration: none;
-  display: inline-block;
+  cursor: pointer;
+  transition: background .2s;
+  margin-right: .3rem;
 }
-
 .action-btn.edit {
   background: var(--azul-medio);
-  color: white;
+  color: #fff;
 }
-
 .action-btn.edit:hover {
   background: #004a8f;
 }
 
-.action-btn.view {
-  background: var(--cinza-claro);
-  color: var(--azul-escuro);
-}
-
-.action-btn.view:hover {
-  background: #e0e0e0;
-}
-
-/* Container do Botão de Adicionar */
-.add-asset-container {
-  margin-bottom: 2rem;
-  text-align: left;
-}
-
-/* Botão de Adicionar Patrimônio */
-.add-asset-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  background: var(--azul-escuro);
-  color: white;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: var(--peso-negrito);
-  text-decoration: none;
-  transition: all 0.2s;
-  border: none;
-  cursor: pointer;
-  font-family: var(--fonte-principal);
-}
-
-.add-asset-btn span {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.add-asset-btn:hover {
-  background: var(--azul-medio);
-}
-
-/* Responsividade */
-@media (max-width: 1200px) {
+/* --------------------
+   Responsividade
+-------------------- */
+@media(max-width: 1200px) {
   .search-bar {
     grid-template-columns: repeat(3, 1fr);
   }
-  
-  .search-group:nth-child(4) { grid-column: 1; }
-  .search-group:nth-child(5) { grid-column: 2; }
-  .search-group:nth-child(6) { grid-column: 3; }
-  
-  .search-buttons {
-    grid-column: 1 / span 3;
-  }
 }
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    margin-left: 0;
-  }
-  
+@media(max-width: 768px) {
+  .dashboard-container { margin-left: 0; }
+  .main-content { padding: 1.5rem; }
   .search-bar {
     grid-template-columns: 1fr;
   }
-  
-  .search-group {
-    grid-column: 1 !important;
-  }
-  
-  .search-buttons {
-    grid-column: 1 !important;
-    flex-direction: column;
-  }
 }
-
-@media (max-width: 576px) {
+@media(max-width: 576px) {
   .content-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-  }
-  
-  .main-content {
-    padding: 1.5rem;
   }
 }

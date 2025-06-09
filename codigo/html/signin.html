@@ -10,6 +10,14 @@
   <div class="container">
     <div class="card">
       <h1>Acesso ao Sistema</h1>
+
+      <!-- Notificação genérica -->
+      <div id="notification" class="notification hidden">
+        <div class="notification-content error">
+          <span class="notification-message"></span>
+        </div>
+      </div>
+
       <form id="loginForm" action="dashboard.html" method="GET">
         <div class="label-float">
           <input type="text" id="email" required>
@@ -24,5 +32,58 @@
       </form>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Cria conta ADM padrão
+      let usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+      if (!usuarios.find(u => u.email === "admin@patricontrol.com")) {
+        usuarios.push({
+          id: "ADM001",
+          nome: "Administrador",
+          email: "admin@patricontrol.com",
+          senha: "admin123",
+          cargo: "Administrador",
+          filial: "Matriz",
+          status: "Ativo",
+          administrador: "Sim",
+          foto: "",
+          criadoEm: new Date().toISOString()
+        });
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      }
+
+      const form = document.getElementById("loginForm");
+      const notification = document.getElementById("notification");
+      const content = notification.querySelector(".notification-content");
+      const message = notification.querySelector(".notification-message");
+
+      function showNotification(msg) {
+        message.textContent = msg;
+        notification.classList.remove("hidden");
+        setTimeout(() => notification.classList.add("hidden"), 3000);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const senha = document.getElementById("password").value;
+        const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+        const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+
+        if (!usuario) {
+          showNotification("Usuário ou senha inválidos.");
+          return;
+        }
+        if (usuario.status !== "Ativo") {
+          showNotification("Usuário inativo. Solicite ativação ao administrador.");
+          return;
+        }
+
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+        window.location.href = "dashboard.html";
+      });
+    });
+  </script>
 </body>
 </html>

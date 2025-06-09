@@ -3,116 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <title>PatriControl - Cadastrar Usuário</title>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/codigo/css/sidebar.css">
   <link rel="stylesheet" href="/codigo/css/cadastrarusuario.css">
 </head>
 <body>
-  <!-- Container da Sidebar (será preenchido via JavaScript) -->
+  <!-- Sidebar -->
   <div id="sidebar-container"></div>
 
   <!-- Conteúdo Principal -->
   <div class="dashboard-container">
     <main class="main-content">
+
+      <!-- Cabeçalho -->
       <header class="content-header">
         <h1>Cadastrar Novo Usuário</h1>
         <div class="user-welcome">
-          <span>Bem-vindo, <strong>Admin</strong></span>
+          <span>Bem-vindo, <strong id="userName">Usuário</strong></span>
         </div>
       </header>
 
+      <!-- Notificação de sucesso -->
       <div id="notification" class="notification hidden">
         <div class="notification-content">
           <span class="notification-message">Usuário cadastrado com sucesso!</span>
         </div>
       </div>
 
+      <!-- Formulário de Cadastro -->
       <div class="form-container">
         <form id="cadastroUsuarioForm">
+
+          <!-- Nome e E-mail -->
           <div class="form-row">
             <div class="form-group">
-              <label for="nomeCompleto">Nome Completo</label>
-              <input type="text" id="nomeCompleto" placeholder="Digite o nome completo" required>
+              <label for="nome">Nome Completo</label>
+              <input type="text" id="nome" required>
             </div>
             <div class="form-group">
               <label for="email">E-mail</label>
-              <input type="email" id="email" placeholder="Digite o e-mail" required>
-              <div class="error-message" id="emailError">E-mail inválido ou já cadastrado</div>
+              <input type="email" id="email" required>
             </div>
           </div>
 
-          <div class="form-row">
+          <!-- Cargo e Filial -->
+          <div class="form-row aligned-row">
             <div class="form-group">
               <label for="cargo">Cargo</label>
-              <select id="cargo" required>
-                <option value="">Selecione o cargo</option>
-                <option value="administrador">Administrador</option>
-                <option value="gestor">Gestor</option>
-                <option value="colaborador">Colaborador</option>
-              </select>
+              <div class="select-add-group">
+                <select id="cargo" class="full-dropdown" required>
+                  <option value="">Selecione</option>
+                </select>
+                <button type="button" id="btn-cargo" class="icon-btn">&#x2630;</button>
+              </div>
             </div>
             <div class="form-group">
               <label for="filial">Filial</label>
-              <select id="filial" required>
-                <option value="">Selecione a filial</option>
-                <option value="matriz">Matriz - São Paulo</option>
-                <option value="rj">Rio de Janeiro</option>
-                <option value="bh">Belo Horizonte</option>
-              </select>
+              <div class="select-add-group">
+                <select id="filial" class="full-dropdown" required>
+                  <option value="">Selecione</option>
+                </select>
+                <button type="button" id="btn-filial" class="icon-btn">&#x2630;</button>
+              </div>
             </div>
           </div>
 
+          <!-- Senha e Confirmação -->
           <div class="form-row">
             <div class="form-group">
               <label for="senha">Senha</label>
-              <input type="password" id="senha" placeholder="Digite a senha" required>
+              <input type="password" id="senha" required>
             </div>
             <div class="form-group">
               <label for="confirmarSenha">Confirmar Senha</label>
-              <input type="password" id="confirmarSenha" placeholder="Confirme a senha" required>
+              <input type="password" id="confirmarSenha" required>
               <div class="error-message" id="senhaError">As senhas não coincidem</div>
             </div>
           </div>
 
+          <!-- Status e Administrador -->
+          <div class="form-row aligned-row">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select id="status" class="full-dropdown" required>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="administrador">Administrador</label>
+              <select id="administrador" class="full-dropdown" required>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Botões -->
           <div class="form-row actions">
             <a href="gerenciamentodeusuario.html" class="btn cancel">Cancelar</a>
             <button type="submit" class="btn save">Cadastrar Usuário</button>
           </div>
+
         </form>
       </div>
     </main>
   </div>
 
+  <!-- Modal Container -->
+  <div id="modal-container"></div>
+
+  <!-- Scripts -->
+  <script src="/codigo/js/utils.js"></script>
   <script src="/codigo/js/sidebar.js"></script>
   <script>
-    document.getElementById('cadastroUsuarioForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const senha = document.getElementById('senha').value;
-      const confirmarSenha = document.getElementById('confirmarSenha').value;
-      const senhaError = document.getElementById('senhaError');
-      const emailError = document.getElementById('emailError');
-      const notification = document.getElementById('notification');
-      
-      // Esconde mensagens de erro
-      senhaError.style.display = 'none';
-      emailError.style.display = 'none';
-      
-      if (senha !== confirmarSenha) {
-        senhaError.style.display = 'block';
-      } else {
-        // Mostra notificação
-        notification.classList.remove('hidden');
-        
-        // Esconde após 3 segundos
-        setTimeout(() => {
-          notification.classList.add('hidden');
-        }, 3000);
-        
-        // Limpa formulário
-        this.reset();
+    document.addEventListener("DOMContentLoaded", function () {
+      const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
+      if (!usuarioLogado.administrador || usuarioLogado.administrador !== "Sim") {
+        alert("Acesso restrito. Permissão de administrador necessária.");
+        window.location.href = "dashboard.html";
+        return;
       }
+      document.getElementById("userName").textContent = usuarioLogado.nome || "Usuário";
+
+      function atualizarSelect(tipo) {
+        const sel = document.getElementById(tipo);
+        sel.innerHTML = '<option value="">Selecione</option>';
+        JSON.parse(localStorage.getItem(tipo) || "[]")
+          .forEach(item => sel.append(new Option(item, item)));
+      }
+
+      function abrirModal(tipo) {
+        const dados = JSON.parse(localStorage.getItem(tipo) || "[]");
+        document.getElementById("modal-container").innerHTML = `
+          <div class="modal-overlay" onclick="fecharModal()"></div>
+          <div class="modal">
+            <h2>Gerenciar ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}</h2>
+            <div class="modal-form">
+              <input id="novo-${tipo}" placeholder="Novo ${tipo}">
+              <button onclick="adicionarItem('${tipo}')">Adicionar</button>
+            </div>
+            <ul class="modal-lista" id="lista-${tipo}">
+              ${dados.map((i, idx) => `
+                <li>
+                  <input value="${i}" onchange="editarItem('${tipo}',${idx},this.value)">
+                  <button onclick="excluirItem('${tipo}',${idx})">Excluir</button>
+                </li>`).join("")}
+            </ul>
+            <button onclick="fecharModal()" class="modal-fechar">Fechar</button>
+          </div>`;
+        document.getElementById("modal-container").style.display = "block";
+      }
+
+      function fecharModal() {
+        const mc = document.getElementById("modal-container");
+        mc.innerHTML = "";
+        mc.style.display = "none";
+      }
+
+      window.abrirModal = abrirModal;
+      window.fecharModal = fecharModal;
+      window.adicionarItem = function(tipo) {
+        const val = document.getElementById("novo-"+tipo).value.trim();
+        if (!val) return;
+        const arr = JSON.parse(localStorage.getItem(tipo) || "[]");
+        if (!arr.includes(val)) {
+          arr.push(val);
+          localStorage.setItem(tipo, JSON.stringify(arr));
+          atualizarSelect(tipo);
+          abrirModal(tipo);
+        }
+      };
+      window.editarItem = function(tipo,i,v) {
+        const arr = JSON.parse(localStorage.getItem(tipo) || "[]");
+        arr[i] = v;
+        localStorage.setItem(tipo, JSON.stringify(arr));
+        atualizarSelect(tipo);
+      };
+      window.excluirItem = function(tipo,i) {
+        const arr = JSON.parse(localStorage.getItem(tipo) || "[]");
+        arr.splice(i,1);
+        localStorage.setItem(tipo, JSON.stringify(arr));
+        atualizarSelect(tipo);
+        abrirModal(tipo);
+      };
+
+      ["cargo","filial"].forEach(atualizarSelect);
+      document.getElementById("btn-cargo").onclick  = () => abrirModal("cargo");
+      document.getElementById("btn-filial").onclick = () => abrirModal("filial");
+
+      document.getElementById("cadastroUsuarioForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const s = document.getElementById("senha").value;
+        const c = document.getElementById("confirmarSenha").value;
+        const err = document.getElementById("senhaError");
+        err.style.display = "none";
+        if (s !== c) { err.style.display = "block"; return; }
+        const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+        const novoId = "USR" + String(usuarios.length + 1).padStart(3, "0");
+        usuarios.push({
+          id: novoId,
+          nome: document.getElementById("nome").value,
+          email: document.getElementById("email").value,
+          senha: s,
+          cargo: document.getElementById("cargo").value,
+          filial: document.getElementById("filial").value,
+          status: document.getElementById("status").value,
+          administrador: document.getElementById("administrador").value,
+          criadoEm: new Date().toISOString()
+        });
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        document.getElementById("notification").classList.remove("hidden");
+        setTimeout(() => window.location.href = "gerenciamentodeusuario.html", 1200);
+      });
     });
   </script>
 </body>

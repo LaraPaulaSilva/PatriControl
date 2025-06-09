@@ -24,7 +24,8 @@
         <div class="submenu" role="menu">
           <a href="informacoespessoais.html" role="menuitem">Minhas Informações</a>
           <a href="alterarsenha.html" role="menuitem">Alterar Senha</a>
-          <a href="signin.html" role="menuitem">Sair</a>
+          <!-- chama logout() ao invés de link estático -->
+          <a href="#" role="menuitem" onclick="logout()">Sair</a>
         </div>
       </div>
 
@@ -53,9 +54,13 @@
     </div>
   </aside>
 
-  <!-- Script opcional para funcionalidades extras -->
+  <!-- Função de Logout -->
   <script>
-    // Adiciona classe 'loaded' após carregamento para transições CSS
+    function logout() {
+      // remove dados do usuário e vai para login
+      localStorage.removeItem('usuarioLogado');
+      window.location.href = 'signin.html';
+    }
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.sidebar').classList.add('loaded');
     });

@@ -2,92 +2,106 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PatriControl - Editar Usuário</title>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/codigo/css/sidebar.css">
   <link rel="stylesheet" href="/codigo/css/editarusuario.css">
 </head>
 <body>
-  <!-- Container da Sidebar (será preenchido via JavaScript) -->
+  <!-- Sidebar -->
   <div id="sidebar-container"></div>
 
   <!-- Conteúdo Principal -->
   <div class="dashboard-container">
     <main class="main-content">
+
+      <!-- Cabeçalho -->
       <header class="content-header">
         <h1>Editar Usuário</h1>
         <div class="user-welcome">
-          <span>Bem-vindo, <strong>Admin</strong></span>
+          <span>Bem-vindo, <strong id="userName">Usuário</strong></span>
         </div>
       </header>
 
+      <!-- Notificação de sucesso -->
       <div id="notification" class="notification hidden">
         <div class="notification-content">
           <span class="notification-message">Usuário atualizado com sucesso!</span>
         </div>
       </div>
 
+      <!-- Formulário de Edição -->
       <div class="form-container">
         <form id="editarUsuarioForm">
-          <!-- Linha 1 - Código (não editável) -->
+
+          <!-- Código somente leitura -->
           <div class="form-row">
             <div class="form-group">
               <label for="codigoUsuario">Código do Usuário</label>
-              <input type="text" id="codigoUsuario" value="USR-2023-001" readonly class="readonly-input">
+              <input type="text" id="codigoUsuario" readonly class="readonly-input">
             </div>
           </div>
 
-          <!-- Linha 2 - Nome e Email -->
+          <!-- Nome e email -->
           <div class="form-row">
             <div class="form-group">
-              <label for="nomeCompleto">Nome Completo</label>
-              <input type="text" id="nomeCompleto" value="João Silva" required>
+              <label for="nome">Nome Completo</label>
+              <input type="text" id="nome" required>
             </div>
             <div class="form-group">
               <label for="email">E-mail</label>
-              <input type="email" id="email" value="joao.silva@empresa.com" required>
+              <input type="email" id="email" required>
             </div>
           </div>
 
-          <!-- Linha 3 - Cargo e Status -->
-          <div class="form-row">
-            <div class="form-group">
-              <label for="cargo">Cargo</label>
-              <select id="cargo" required class="full-dropdown">
-                <option value="administrador" selected>Administrador</option>
-                <option value="gestor">Gestor</option>
-                <option value="colaborador">Colaborador</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="status">Status</label>
-              <select id="status" required class="full-dropdown">
-                <option value="ativo" selected>Ativo</option>
-                <option value="inativo">Inativo</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Linha 4 - Filial e Senha -->
+          <!-- Cargo e Filial com botão hambúrguer -->
           <div class="form-row aligned-row">
             <div class="form-group">
-              <label for="filial">Filial</label>
-              <select id="filial" required class="full-dropdown">
-                <option value="matriz" selected>Matriz - São Paulo</option>
-                <option value="rj">Filial - Rio de Janeiro</option>
-                <option value="bh">Filial - Belo Horizonte</option>
-              </select>
+              <label for="cargo">Cargo</label>
+              <div class="select-add-group">
+                <select id="cargo" class="full-dropdown" required></select>
+                <button type="button" id="btn-cargo" class="icon-btn">&#x2630;</button>
+              </div>
             </div>
             <div class="form-group">
-              <label for="senha">Alterar Senha</label>
-              <input type="password" id="senha" placeholder="Deixe em branco para manter a atual">
+              <label for="filial">Filial</label>
+              <div class="select-add-group">
+                <select id="filial" class="full-dropdown" required></select>
+                <button type="button" id="btn-filial" class="icon-btn">&#x2630;</button>
+              </div>
             </div>
           </div>
 
-          <!-- Botões de Ação -->
+          <!-- Status e Administrador -->
+          <div class="form-row aligned-row">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select id="status" class="full-dropdown" required>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="administrador">Administrador</label>
+              <select id="administrador" class="full-dropdown" required>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Nova senha -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="novaSenha">Nova Senha</label>
+              <input type="password" id="novaSenha" placeholder="Deixe em branco para manter a senha atual">
+            </div>
+          </div>
+
+          <!-- Botões -->
           <div class="form-row actions">
-            <a href="gerenciamentodeusuario.html" class="btn cancel">Cancelar</a>
+            <button type="button" class="btn cancel" onclick="window.location='gerenciamentodeusuario.html'">Cancelar</button>
             <button type="submit" class="btn save">Salvar Alterações</button>
           </div>
         </form>
@@ -95,19 +109,142 @@
     </main>
   </div>
 
+  <!-- Modal Container -->
+  <div id="modal-container"></div>
+
+  <!-- Scripts -->
+  <script src="/codigo/js/utils.js"></script>
   <script src="/codigo/js/sidebar.js"></script>
   <script>
-    document.getElementById('editarUsuarioForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Mostra notificação
-      const notification = document.getElementById('notification');
-      notification.classList.remove('hidden');
-      
-      // Esconde após 3 segundos
-      setTimeout(() => {
-        notification.classList.add('hidden');
-      }, 3000);
+  document.addEventListener("DOMContentLoaded", function () {
+    // Verifica permissão
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
+    if (!usuarioLogado || usuarioLogado.administrador !== "Sim") {
+      alert("Acesso restrito. Permissão de administrador necessária.");
+      window.location.href = "dashboard.html";
+      return;
+    }
+    // Saudação com nome
+    document.getElementById("userName").textContent = usuarioLogado.nome || "Usuário";
+
+      // Parâmetro id na URL
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      if (!id) {
+        alert("Usuário não encontrado.");
+        window.location.href = "gerenciamentodeusuario.html";
+        return;
+      }
+
+      // Carrega lista de usuários e preenche formulário
+      const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+      const usuario = usuarios.find(u => u.id === id);
+      if (!usuario) {
+        alert("Usuário inválido.");
+        window.location.href = "gerenciamentodeusuario.html";
+        return;
+      }
+      document.getElementById("codigoUsuario").value = usuario.id;
+      document.getElementById("nome").value = usuario.nome;
+      document.getElementById("email").value = usuario.email;
+      document.getElementById("status").value = usuario.status;
+      document.getElementById("administrador").value = usuario.administrador;
+
+      // Funções de modal
+      function abrirModal(tipo) {
+        const title = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+        const dados = JSON.parse(localStorage.getItem(tipo) || "[]");
+        const modalContainer = document.getElementById("modal-container");
+        modalContainer.innerHTML = `
+          <div class="modal-overlay" onclick="fecharModal()"></div>
+          <div class="modal">
+            <h2>Gerenciar ${title}</h2>
+            <div class="modal-form">
+              <input type="text" id="novo-${tipo}" placeholder="Novo ${title}">
+              <button onclick="adicionarItem('${tipo}')">Adicionar</button>
+            </div>
+            <ul id="lista-${tipo}" class="modal-lista">
+              ${dados.map((item, idx) => `
+                <li>
+                  <input value="${item}" onchange="editarItem('${tipo}', ${idx}, this.value)">
+                  <button onclick="excluirItem('${tipo}', ${idx})">Excluir</button>
+                </li>
+              `).join("")}
+            </ul>
+            <button onclick="fecharModal()" class="modal-fechar">Fechar</button>
+          </div>`;
+        modalContainer.style.display = "block";
+      }
+      function fecharModal() {
+        const modal = document.getElementById("modal-container");
+        modal.innerHTML = "";
+        modal.style.display = "none";
+      }
+      function adicionarItem(tipo) {
+        const input = document.getElementById("novo-" + tipo);
+        const lista = JSON.parse(localStorage.getItem(tipo) || "[]");
+        const val = input.value.trim();
+        if (val && !lista.includes(val)) {
+          lista.push(val);
+          localStorage.setItem(tipo, JSON.stringify(lista));
+          fecharModal();
+          abrirModal(tipo);
+        }
+      }
+      function editarItem(tipo, idx, novoVal) {
+        const lista = JSON.parse(localStorage.getItem(tipo) || "[]");
+        lista[idx] = novoVal;
+        localStorage.setItem(tipo, JSON.stringify(lista));
+      }
+      function excluirItem(tipo, idx) {
+        const lista = JSON.parse(localStorage.getItem(tipo) || "[]");
+        lista.splice(idx, 1);
+        localStorage.setItem(tipo, JSON.stringify(lista));
+        abrirModal(tipo);
+      }
+      window.fecharModal = fecharModal;
+      window.adicionarItem = adicionarItem;
+      window.editarItem = editarItem;
+      window.excluirItem = excluirItem;
+
+      // Preenche selects de cargo e filial
+      function atualizarSelect(tipo) {
+        const sel = document.getElementById(tipo);
+        const lista = JSON.parse(localStorage.getItem(tipo) || "[]");
+        sel.innerHTML = "";
+        lista.forEach(item => {
+          const opt = document.createElement("option");
+          opt.value = item; opt.textContent = item;
+          sel.appendChild(opt);
+        });
+      }
+      atualizarSelect("cargo");
+      atualizarSelect("filial");
+      document.getElementById("cargo").value = usuario.cargo;
+      document.getElementById("filial").value = usuario.filial;
+      document.getElementById("btn-cargo").onclick = () => abrirModal("cargo");
+      document.getElementById("btn-filial").onclick = () => abrirModal("filial");
+
+      // Submissão do formulário
+      document.getElementById("editarUsuarioForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        usuario.nome = document.getElementById("nome").value;
+        usuario.email = document.getElementById("email").value;
+        usuario.status = document.getElementById("status").value;
+        usuario.administrador = document.getElementById("administrador").value;
+        usuario.cargo = document.getElementById("cargo").value;
+        usuario.filial = document.getElementById("filial").value;
+        const novaSenha = document.getElementById("novaSenha").value;
+        if (novaSenha.trim()) usuario.senha = novaSenha;
+        const idx = usuarios.findIndex(u => u.id === usuario.id);
+        usuarios[idx] = usuario;
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+        document.getElementById("notification").classList.remove("hidden");
+        setTimeout(() => {
+          window.location.href = "gerenciamentodeusuario.html";
+        }, 1200);
+      });
     });
   </script>
 </body>

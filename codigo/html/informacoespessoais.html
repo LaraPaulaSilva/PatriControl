@@ -2,29 +2,33 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PatriControl – Minhas Informações</title>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/codigo/css/sidebar.css">
   <link rel="stylesheet" href="/codigo/css/informacoespessoais.css">
 </head>
 <body>
-  <!-- Container da Sidebar (será preenchido via JavaScript) -->
+  <!-- Sidebar -->
   <div id="sidebar-container"></div>
 
   <!-- Conteúdo Principal -->
   <div class="dashboard-container">
     <main class="main-content">
+
+      <!-- Cabeçalho -->
       <header class="content-header">
         <h1>Minhas Informações</h1>
         <div class="user-welcome">
-          <span>Bem-vindo, <strong>Admin</strong></span>
+          <span>Bem-vindo, <strong id="userName"></strong></span>
         </div>
       </header>
 
+      <!-- Cartão de Perfil -->
       <div class="profile-container">
         <div class="profile-card">
           <div class="profile-header">
+            
             <div class="profile-photo">
               <div class="avatar-placeholder">
                 <svg viewBox="0 0 24 24" width="80" height="80">
@@ -32,11 +36,20 @@
                   <path d="M12 14c-4.42 0-8 2.69-8 6v2h16v-2c0-3.31-3.58-6-8-6z" fill="#005b9f"/>
                 </svg>
               </div>
-              <button class="edit-photo-btn">Alterar Foto</button>
+              <button class="edit-photo-btn" title="Alterar Foto">
+                <!-- seu ícone SVG aqui -->
+                ✎
+              </button>
+              <button class="delete-photo-btn" title="Excluir Foto">
+                <!-- seu ícone SVG aqui -->
+                🗑
+              </button>
+              <input type="file" id="inputFoto" accept="image/*" style="display:none">
             </div>
+
             <div class="profile-info">
-              <h2 id="nome">Carlos Silva</h2>
-              <p id="cargo">Administrador do Sistema</p>
+              <h2 id="nome"></h2>
+              <p id="cargoPerfil"></p>
             </div>
           </div>
 
@@ -45,24 +58,128 @@
               <h3>Informações Pessoais</h3>
               <div class="detail-item">
                 <span class="detail-label">Código do Usuário:</span>
-                <span class="detail-value" id="codigo">USR-2023-001</span>
+                <span class="detail-value" id="codigo"></span>
               </div>
               <div class="detail-item">
                 <span class="detail-label">E-mail:</span>
-                <span class="detail-value" id="email">carlos.silva@empresa.com</span>
+                <span class="detail-value" id="email"></span>
               </div>
               <div class="detail-item">
                 <span class="detail-label">Filial:</span>
-                <span class="detail-value" id="filial">Matriz - São Paulo</span>
+                <span class="detail-value" id="filial"></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Cargo:</span>
+                <span class="detail-value" id="cargoInfo"></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Status:</span>
+                <span class="detail-value" id="status"></span>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </main>
   </div>
 
-  <!-- Carrega o conteúdo da sidebar -->
+  <!-- Modal de Confirmação Customizado -->
+  <div id="confirmModal" style="display:none">
+    <div class="confirm-overlay"></div>
+    <div class="confirm-box">
+      <p>Deseja realmente excluir sua foto de perfil?</p>
+      <div class="confirm-actions">
+        <button id="confirmOk" class="btn confirm-ok">OK</button>
+        <button id="confirmCancel" class="btn cancel">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/codigo/js/utils.js"></script>
   <script src="/codigo/js/sidebar.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Carrega usuário
+      const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado")||"{}");
+      if (!usuarioLogado.id) {
+        window.location.href = "signin.html";
+        return;
+      }
+
+      // Preenche cabeçalho e campos
+      document.getElementById("userName").textContent    = usuarioLogado.nome;
+      document.getElementById("nome").textContent        = usuarioLogado.nome;
+      document.getElementById("email").textContent       = usuarioLogado.email;
+      document.getElementById("cargoPerfil").textContent = usuarioLogado.cargo;
+      document.getElementById("cargoInfo").textContent   = usuarioLogado.cargo;
+      document.getElementById("filial").textContent      = usuarioLogado.filial;
+      document.getElementById("status").textContent      = usuarioLogado.status;
+      document.getElementById("codigo").textContent      = usuarioLogado.id;
+
+      // Elementos de foto e modal
+      const avatar       = document.querySelector(".avatar-placeholder");
+      const inputFoto    = document.getElementById("inputFoto");
+      const btnEditar    = document.querySelector(".edit-photo-btn");
+      const btnExcluir   = document.querySelector(".delete-photo-btn");
+      const confirmModal = document.getElementById("confirmModal");
+      const btnOk        = document.getElementById("confirmOk");
+      const btnCancel    = document.getElementById("confirmCancel");
+
+      // Exibe foto existente
+      if (usuarioLogado.foto) {
+        avatar.innerHTML = '<img src="'+usuarioLogado.foto+
+          '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+      }
+
+      // Editar foto
+      btnEditar.addEventListener("click", ()=> inputFoto.click());
+      inputFoto.addEventListener("change", function(){
+        const file = this.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => {
+          usuarioLogado.foto = e.target.result;
+          avatar.innerHTML = '<img src="'+usuarioLogado.foto+
+            '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+          salvarUsuario();
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // Excluir foto → abre modal
+      btnExcluir.addEventListener("click", ()=> {
+        confirmModal.style.display = "flex";
+      });
+
+      // Confirma exclusão
+      btnOk.addEventListener("click", ()=> {
+        usuarioLogado.foto = "";
+        avatar.innerHTML = '<svg viewBox="0 0 24 24" width="80" height="80">'
+          + '<circle cx="12" cy="8" r="5" fill="#005b9f"/>'
+          + '<path d="M12 14c-4.42 0-8 2.69-8 6v2h16v-2c0-3.31-3.58-6-8-6z" fill="#005b9f"/>'
+          + '</svg>';
+        salvarUsuario();
+        confirmModal.style.display = "none";
+      });
+
+      // Cancela exclusão
+      btnCancel.addEventListener("click", ()=> {
+        confirmModal.style.display = "none";
+      });
+
+      // Atualiza localStorage
+      function salvarUsuario() {
+        const todos = JSON.parse(localStorage.getItem("usuarios")||"[]");
+        const idx  = todos.findIndex(u=>u.id===usuarioLogado.id);
+        if (idx!==-1) {
+          todos[idx] = usuarioLogado;
+          localStorage.setItem("usuarios", JSON.stringify(todos));
+          localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+        }
+      }
+    });
+  </script>
 </body>
 </html>

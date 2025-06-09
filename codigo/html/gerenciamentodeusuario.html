@@ -2,26 +2,47 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PatriControl - Gerenciamento de Usuários</title>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/codigo/css/sidebar.css">
   <link rel="stylesheet" href="/codigo/css/gerenciamentodeusuario.css">
 </head>
 <body>
-  <!-- Container da Sidebar (será preenchido via JavaScript) -->
   <div id="sidebar-container"></div>
 
-  <!-- Conteúdo Principal -->
   <div class="dashboard-container">
     <main class="main-content">
       <header class="content-header">
         <h1>Gerenciamento de Usuários</h1>
         <div class="user-welcome">
-          <span>Bem-vindo, <strong>Admin</strong></span>
+          <span>Bem-vindo, <strong id="userName">Usuário</strong></span>
         </div>
       </header>
 
+      <!-- Filtro padrão -->
+      <div class="filter-container">
+        <div class="search-bar">
+          <div class="search-group">
+            <label for="filtroStatus">Status:</label>
+            <select id="filtroStatus">
+              <option value="">Todos</option>
+              <option value="Ativo">Ativo</option>
+              <option value="Inativo">Inativo</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <label for="filtroAdmin">Administrador:</label>
+            <select id="filtroAdmin">
+              <option value="">Todos</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela -->
       <div class="table-container">
         <table>
           <thead>
@@ -32,39 +53,68 @@
               <th>Cargo</th>
               <th>Filial</th>
               <th>Status</th>
+              <th>Administrador</th>
               <th>Ações</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>USR-001</td>
-              <td>João Silva</td>
-              <td>joao.silva@empresa.com</td>
-              <td>Administrador</td>
-              <td>Matriz - São Paulo</td>
-              <td><span class="status-badge active">Ativo</span></td>
-              <td>
-                <a href="editarusuario.html" class="action-btn edit">Editar</a>
-              </td>
-            </tr>
-            <tr>
-              <td>USR-002</td>
-              <td>Maria Oliveira</td>
-              <td>maria.oliveira@empresa.com</td>
-              <td>Gestor</td>
-              <td>Rio de Janeiro</td>
-              <td><span class="status-badge inactive">Inativo</span></td>
-              <td>
-                <a href="#" class="action-btn edit">Editar</a>
-              </td>
-            </tr>
-          </tbody>
+          <tbody id="tabelaUsuarios"></tbody>
         </table>
       </div>
     </main>
   </div>
 
-  <!-- Carrega o conteúdo da sidebar -->
+  <script src="/codigo/js/utils.js"></script>
   <script src="/codigo/js/sidebar.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
+    if (!usuarioLogado || usuarioLogado.administrador !== "Sim") {
+      alert("Acesso restrito. Permissão de administrador necessária.");
+      window.location.href = "dashboard.html";
+      return;
+    }
+    document.getElementById("userName").textContent = usuarioLogado.nome || "Usuário";
+
+    const tabela = document.getElementById("tabelaUsuarios");
+    const filtroStatus = document.getElementById("filtroStatus");
+    const filtroAdmin  = document.getElementById("filtroAdmin");
+    filtroStatus.addEventListener("change", renderizar);
+    filtroAdmin.addEventListener("change", renderizar);
+
+    function renderizar() {
+      const todos = JSON.parse(localStorage.getItem("usuarios") || "[]");
+      const s = filtroStatus.value, a = filtroAdmin.value;
+      tabela.innerHTML = "";
+      const list = todos.filter(u =>
+        (!s || u.status === s) &&
+        (!a || u.administrador === a)
+      );
+      if (list.length === 0) {
+        tabela.innerHTML = `<tr><td colspan="8" style="text-align:center">Nenhum usuário encontrado</td></tr>`;
+        return;
+      }
+      list.forEach(u => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${u.id}</td>
+          <td>${u.nome}</td>
+          <td>${u.email}</td>
+          <td>${u.cargo}</td>
+          <td>${u.filial}</td>
+          <td>${u.status}</td>
+          <td>${u.administrador}</td>
+          <td>
+            <button class="action-btn edit" onclick="location.href='editarusuario.html?id=${u.id}'">
+              Editar
+            </button>
+          </td>
+        `;
+        tabela.appendChild(tr);
+      });
+    }
+
+    renderizar();
+  });
+  </script>
 </body>
 </html>

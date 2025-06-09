@@ -5,15 +5,20 @@
   --branco: #ffffff;
   --cinza-claro: #f8f9fa;
   --sombra: 0 4px 12px rgba(0, 91, 159, 0.15);
+  --vermelho: #dc3545;
+
+  --fonte-principal: 'Segoe UI', Arial, sans-serif;
+  --peso-negrito: 600;
 }
 
+/* Base */
 body {
   background: var(--azul-claro);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: var(--fonte-principal);
   margin: 0;
 }
 
@@ -22,6 +27,7 @@ body {
   padding: 20px;
 }
 
+/* Card */
 .card {
   background: var(--branco);
   padding: 2.5rem;
@@ -38,9 +44,10 @@ h1 {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: var(--peso-negrito);
 }
 
+/* Labels flutuantes */
 .label-float {
   position: relative;
   margin-bottom: 1.8rem;
@@ -72,9 +79,10 @@ h1 {
   color: var(--azul-escuro);
 }
 
-button {
+/* Botão */
+button[type="submit"] {
   background: var(--azul-escuro);
-  color: white;
+  color: var(--branco);
   border: none;
   padding: 1rem;
   width: 100%;
@@ -82,10 +90,10 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s;
-  font-weight: 600;
+  font-weight: var(--peso-negrito);
 }
 
-button:hover {
+button[type="submit"]:hover {
   background: var(--azul-medio);
 }
 
@@ -106,72 +114,97 @@ button:hover {
   text-decoration: underline;
 }
 
+/* Notificação */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  transition: all .3s ease;
+}
+.notification.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+}
+.notification-content {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: var(--vermelho);
+  color: var(--branco);
+  font-weight: var(--peso-negrito);
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.notification-content {
+  animation: slideIn .3s ease-out;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .card {
     padding: 2rem 1.5rem;
   }
-
   h1 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
-
   .label-float {
     margin-bottom: 1.5rem;
   }
-
   .label-float input {
     padding: 0.8rem 0;
   }
-
   .label-float input:focus + label,
   .label-float input:valid + label {
     top: -0.7rem;
     font-size: 0.8rem;
   }
-}
-
-@media (max-width: 480px) {
-
-  .card {
-    padding: 1.5rem 1rem;
-    border-radius: 6px;
-  }
-
-  h1 {
-    font-size: 1.3rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .label-float {
-    margin-bottom: 1.2rem;
-  }
-
-  button {
+  button[type="submit"] {
     padding: 0.8rem;
     font-size: 0.9rem;
   }
-
   .footer-text {
     font-size: 0.8rem;
     margin-top: 1rem;
   }
 }
-
+@media (max-width: 480px) {
+  .card {
+    padding: 1.5rem 1rem;
+    border-radius: 6px;
+  }
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  .label-float {
+    margin-bottom: 1.2rem;
+  }
+  button[type="submit"] {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .footer-text {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+}
 @media (max-width: 360px) {
   .card {
     padding: 1.2rem 0.8rem;
   }
-
   h1 {
     font-size: 1.2rem;
   }
-
   .label-float label {
     font-size: 0.9rem;
   }
-
   .label-float input:focus + label,
   .label-float input:valid + label {
     top: -0.6rem;

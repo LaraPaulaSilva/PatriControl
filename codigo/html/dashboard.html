@@ -2,79 +2,85 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>PatriControl – Gestão de Patrimônios</title>
+  <!-- Fonte e estilos da sidebar + dashboard -->
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/codigo/css/sidebar.css">
   <link rel="stylesheet" href="/codigo/css/dashboard.css">
 </head>
 <body>
-  <!-- Container da Sidebar (será preenchido via JavaScript) -->
+  <!-- Container da sidebar, preenchido via sidebar.js -->
   <div id="sidebar-container"></div>
 
-  <!-- Conteúdo Principal -->
+  <!-- Conteúdo principal deslocado para direita pela sidebar -->
   <div class="dashboard-container">
     <main class="main-content">
+
+      <!-- Cabeçalho com título e saudação -->
       <header class="content-header">
         <h1>Gestão de Patrimônios</h1>
         <div class="user-welcome">
-          <span>Bem-vindo, <strong>Admin</strong></span>
+          <span>Bem-vindo, <strong id="userName">Usuário</strong></span>
         </div>
       </header>
 
-      <!-- Barra de Pesquisa -->
+      <!-- Área de filtros -->
       <div class="search-container">
         <div class="search-bar">
+          <!-- Filtro por número -->
           <div class="search-group">
-            <input type="text" placeholder="Nº Patrimônio">
+            <label for="filter-numero">Nº Patrimônio</label>
+            <input id="filter-numero" type="text" placeholder="1234">
           </div>
+          <!-- Filtro por nome -->
           <div class="search-group">
-            <input type="text" placeholder="Nome do Patrimônio">
+            <label for="filter-nome">Nome</label>
+            <input id="filter-nome" type="text" placeholder="Nome do Patrimônio">
           </div>
+          <!-- Filtro por filial (dinâmico) -->
           <div class="search-group">
-            <select>
+            <label for="filter-filial">Filial</label>
+            <select id="filter-filial">
               <option value="">Todas Filiais</option>
-              <option>São Paulo</option>
-              <option>Rio de Janeiro</option>
             </select>
           </div>
+          <!-- Filtro por tipo (dinâmico) -->
           <div class="search-group">
-            <select>
+            <label for="filter-tipo">Tipo</label>
+            <select id="filter-tipo">
               <option value="">Todos Tipos</option>
-              <option>Computador</option>
-              <option>Móvel</option>
             </select>
           </div>
+          <!-- Filtro por fornecedor (dinâmico) -->
           <div class="search-group">
-            <select>
+            <label for="filter-fornecedor">Fornecedor</label>
+            <select id="filter-fornecedor">
               <option value="">Todos Fornecedores</option>
-              <option>Fornecedor A</option>
-              <option>Fornecedor B</option>
             </select>
           </div>
+          <!-- Filtro por status (fixo) -->
           <div class="search-group">
-            <select>
+            <label for="filter-status">Status</label>
+            <select id="filter-status">
               <option value="">Todos Status</option>
-              <option>Ativo</option>
-              <option>Manutenção</option>
             </select>
           </div>
-          
-          <div class="search-buttons">
-            <button class="search-btn">Filtrar</button>
-            <button class="reset-btn">Limpar</button>
+          <!-- Botão limpar filtros -->
+          <div class="search-group actions">
+            <button id="btn-reset" class="reset-btn">Limpar</button>
           </div>
         </div>
       </div>
 
-      <!-- Botão de Adicionar Patrimônio -->
+      <!-- Botão para adicionar novo patrimônio -->
       <div class="add-asset-container">
         <a href="cadastrarpatrimonio.html" class="add-asset-btn">
           <span>+</span> Adicionar Patrimônio
         </a>
       </div>
 
-      <!-- Tabela de Patrimônios -->
+      <!-- Tabela de exibição dos patrimônios -->
       <div class="table-container">
         <table>
           <thead>
@@ -88,36 +94,122 @@
               <th>Ações</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>PAT-2023-001</td>
-              <td>Notebook Dell i7</td>
-              <td>São Paulo</td>
-              <td>Computador</td>
-              <td>Fornecedor A</td>
-              <td><span class="status-badge active">Ativo</span></td>
-              <td>
-                <a href="editarpatrimonio.html" class="action-btn edit">Editar</a>
-              </td>
-            </tr>
-            <tr>
-              <td>PAT-2023-002</td>
-              <td>Mesa Executiva</td>
-              <td>Rio de Janeiro</td>
-              <td>Móvel</td>
-              <td>Fornecedor B</td>
-              <td><span class="status-badge maintenance">Manutenção</span></td>
-              <td>
-                <a href="editarpatrimonio.html" class="action-btn edit">Editar</a>
-              </td>
-            </tr>
+          <tbody id="patrimoniosBody">
+            <!-- Linhas preenchidas dinamicamente por JS -->
           </tbody>
         </table>
       </div>
     </main>
   </div>
 
-  <!-- Carrega o conteúdo da sidebar -->
+  <!-- Script da sidebar -->
+  <script src="/codigo/js/utils.js"></script>
   <script src="/codigo/js/sidebar.js"></script>
+  <!-- Lógica de filtros e renderização -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Obtém usuário logado e exibe nome
+    const user = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
+    if (!user.id) return window.location.href = "signin.html";
+    document.getElementById("userName").textContent = user.nome;
+
+    // Função para popular selects (filial, tipo, fornecedor)
+    function populateSelect(id, key) {
+      const sel = document.getElementById(id);
+      sel.innerHTML = `<option value="">Todos</option>`;
+      JSON.parse(localStorage.getItem(key) || "[]").forEach(item => {
+        const opt = document.createElement("option");
+        opt.value = item;
+        opt.textContent = item;
+        sel.appendChild(opt);
+      });
+    }
+    populateSelect("filter-filial", "filial");
+    populateSelect("filter-tipo", "tipo");
+    populateSelect("filter-fornecedor", "fornecedor");
+    // Status fixo
+    ["Ativo", "Em Manutenção", "Baixado"].forEach(s => {
+      const o = document.createElement("option");
+      o.value = s;
+      o.textContent = s;
+      document.getElementById("filter-status").appendChild(o);
+    });
+
+    // Recupera todos os patrimônios e elemento tbody
+    const all = JSON.parse(localStorage.getItem("patrimonios") || "[]");
+    const tbody = document.getElementById("patrimoniosBody");
+
+    // Renderiza tabela com array de objetos
+    function render(data) {
+      tbody.innerHTML = "";
+      if (!data.length) {
+        // Linha de "nenhum registro"
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td colspan="7" style="text-align:center">Nenhum patrimônio encontrado.</td>`;
+        tbody.appendChild(tr);
+        return;
+      }
+      data.forEach(p => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${p.numero}</td>
+          <td>${p.nome}</td>
+          <td>${p.filial}</td>
+          <td>${p.tipo}</td>
+          <td>${p.fornecedor}</td>
+          <td>
+            <span class="status-badge ${
+              p.status==='Ativo' ? 'active' :
+              p.status==='Em Manutenção' ? 'maintenance' :
+              'inactive'
+            }">${p.status}</span>
+          </td>
+          <td>
+            <button class="action-btn edit"
+              onclick="location.href='editarpatrimonio.html?id=${p.numero}'">
+              Editar
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+    render(all);
+
+    // Aplica filtros conforme entradas ou seleções
+    function applyFilter() {
+      const fnum = document.getElementById("filter-numero").value.trim().toLowerCase();
+      const fname = document.getElementById("filter-nome").value.trim().toLowerCase();
+      const ffil = document.getElementById("filter-filial").value;
+      const ftip = document.getElementById("filter-tipo").value;
+      const ffor = document.getElementById("filter-fornecedor").value;
+      const fsta = document.getElementById("filter-status").value;
+      const filtered = all.filter(p =>
+        (!fnum   || p.numero.toLowerCase().includes(fnum)) &&
+        (!fname || p.nome.toLowerCase().includes(fname)) &&
+        (!ffil   || p.filial===ffil) &&
+        (!ftip   || p.tipo===ftip) &&
+        (!ffor   || p.fornecedor===ffor) &&
+        (!fsta   || p.status===fsta)
+      );
+      render(filtered);
+    }
+
+    // Listeners para filtro automático
+    document.querySelectorAll(
+      "#filter-numero, #filter-nome, #filter-filial, #filter-tipo, #filter-fornecedor, #filter-status"
+    ).forEach(el => {
+      el.addEventListener("input", applyFilter);
+      el.addEventListener("change", applyFilter);
+    });
+
+    // Botão limpar
+    document.getElementById("btn-reset").addEventListener("click", () => {
+      document.querySelectorAll(".search-bar input, .search-bar select")
+        .forEach(el => el.value = "");
+      render(all);
+    });
+  });
+  </script>
 </body>
 </html>

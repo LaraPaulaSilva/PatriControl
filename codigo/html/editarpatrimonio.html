@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PatriControl - Sistema de Gestão Patrimonial</title>
+  <title>PatriControl – Editar Patrimônio</title>
+  <!-- Fonte Segoe UI -->
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <!-- CSS da Sidebar e desta página -->
   <link rel="stylesheet" href="/codigo/css/sidebar.css">
   <link rel="stylesheet" href="/codigo/css/editarpatrimonio.css">
 </head>
 <body>
-  <!-- Container da Sidebar (será preenchido via JavaScript) -->
   <div id="sidebar-container"></div>
-
-  <!-- Conteúdo Principal -->
   <div class="dashboard-container">
     <main class="main-content">
+
       <header class="content-header">
         <h1>Editar Patrimônio</h1>
         <div class="user-welcome">
-          <span>Bem-vindo, <strong>Admin</strong></span>
+          <span>Bem-vindo, <strong id="userName"></strong></span>
         </div>
       </header>
 
       <div id="notification" class="notification hidden">
-        <div class="notification-content">
-          <span class="notification-message">Alterações salvas com sucesso!</span>
+        <div class="notification-content success">
+          <span class="notification-message"></span>
         </div>
       </div>
 
@@ -34,47 +34,35 @@
           <div class="form-row">
             <div class="form-group">
               <label for="patrimonioNum">Nº Patrimônio</label>
-              <input type="text" id="patrimonioNum" placeholder="Nº Patrimônio" value="PAT-2023-001">
+              <input type="text" id="patrimonioNum" readonly>
             </div>
             <div class="form-group">
               <label for="nomePatrimonio">Nome do Patrimônio</label>
-              <input type="text" id="nomePatrimonio" placeholder="Nome do patrimônio" value="Notebook Dell i7">
+              <input type="text" id="nomePatrimonio" required>
             </div>
           </div>
 
           <!-- Linha 2 -->
           <div class="form-row">
-            <div class="form-group">
+            <div class="form-group select-add-wrapper">
               <label for="filial">Filial</label>
               <div class="select-add-group">
-                <select id="filial">
-                  <option value="">Selecione</option>
-                  <option value="sp" selected>São Paulo</option>
-                  <option value="rj">Rio de Janeiro</option>
-                </select>
-                <button type="button" class="add-btn">+</button>
+                <select id="filial" required></select>
+                <button type="button" class="icon-btn" id="btn-filial">☰</button>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group select-add-wrapper">
               <label for="tipo">Tipo de Patrimônio</label>
               <div class="select-add-group">
-                <select id="tipo">
-                  <option value="">Selecione</option>
-                  <option value="computador" selected>Computador</option>
-                  <option value="movel">Móvel</option>
-                </select>
-                <button type="button" class="add-btn">+</button>
+                <select id="tipo" required></select>
+                <button type="button" class="icon-btn" id="btn-tipo">☰</button>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group select-add-wrapper">
               <label for="fornecedor">Fornecedor</label>
               <div class="select-add-group">
-                <select id="fornecedor">
-                  <option value="">Selecione</option>
-                  <option value="fornecedor-a" selected>Fornecedor A</option>
-                  <option value="fornecedor-b">Fornecedor B</option>
-                </select>
-                <button type="button" class="add-btn">+</button>
+                <select id="fornecedor" required></select>
+                <button type="button" class="icon-btn" id="btn-fornecedor">☰</button>
               </div>
             </div>
           </div>
@@ -82,106 +70,308 @@
           <!-- Linha 3 -->
           <div class="form-row">
             <div class="form-group">
-              <label for="notaFiscal">Nº NF</label>
-              <input type="text" id="notaFiscal" placeholder="Nº NF" value="NF-123456">
+              <label for="notaFiscal">Nota Fiscal</label>
+              <input type="text" id="notaFiscal">
             </div>
             <div class="form-group">
               <label for="dataCompra">Data da Compra</label>
-              <input type="date" id="dataCompra" value="2023-01-15">
+              <input type="date" id="dataCompra" required>
             </div>
             <div class="form-group">
-              <label for="valorCompra">Valor da compra</label>
-              <input type="text" id="valorCompra" placeholder="R$ 0,00" value="R$ 5.299,00">
+              <label for="valorCompra">Valor</label>
+              <input type="number" id="valorCompra" step="0.01" required>
             </div>
             <div class="form-group">
               <label for="status">Status</label>
-              <select id="status">
-                <option value="">Selecione</option>
-                <option value="ativo" selected>Ativo</option>
-                <option value="manutencao">Manutenção</option>
-                <option value="inativo">Inativo</option>
+              <select id="status" required>
+                <option value="Ativo">Ativo</option>
+                <option value="Em Manutenção">Em Manutenção</option>
+                <option value="Baixado">Baixado</option>
               </select>
             </div>
           </div>
 
-          <!-- Upload de Imagem -->
-          <div class="form-row center">
-            <div class="form-group upload-group">
-              <label>Imagem do Patrimônio</label>
-              <div class="upload-container">
-                <button type="button" class="upload-btn">Upload de imagem</button>
-                <div class="upload-area">Imagem</div>
-              </div>
+          <!-- Foto -->
+          <div class="form-row photo-row">
+            <div class="profile-photo">
+              <div class="avatar-placeholder" id="avatar"></div>
+              <button type="button" class="delete-photo-btn" id="btn-delete-photo">🗑</button>
+              <button type="button" class="edit-photo-btn" id="btn-edit-photo">✎</button>
+              <input type="file" id="inputFoto" accept="image/*" hidden>
             </div>
           </div>
 
-          <!-- Seções de Tabelas -->
-          <div class="form-row">
-            <!-- Trâmites -->
+          <!-- Histórico -->
+          <div class="form-row history-row">
             <div class="section">
               <div class="section-header">
                 <h3>Trâmites</h3>
-                <button type="button" class="add-btn">+</button>
+                <button type="button" class="add-btn" id="btn-add-tramite">+</button>
               </div>
-              <div class="table-container">
-                <table>
-                  <thead>
-                    <tr><th>#</th><th>Ação</th><th>Data</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td>1</td><td>Cadastro inicial</td><td>15/01/2023</td></tr>
-                    <tr><td>2</td><td>Atualização de localização</td><td>20/03/2023</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <ul id="histTramites" class="history-list"></ul>
             </div>
-
-            <!-- Manutenção -->
             <div class="section">
               <div class="section-header">
-                <h3>Manutenção</h3>
-                <button type="button" class="add-btn">+</button>
+                <h3>Manutenções</h3>
+                <button type="button" class="add-btn" id="btn-add-manut">+</button>
               </div>
-              <div class="table-container">
-                <table>
-                  <thead>
-                    <tr><th>#</th><th>Ação</th><th>Data</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td>1</td><td>Troca de bateria</td><td>10/05/2023</td></tr>
-                    <tr><td>2</td><td>Atualização de software</td><td>15/07/2023</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <ul id="histManutencao" class="history-list"></ul>
             </div>
           </div>
 
-          <!-- Botões de Ação -->
+          <!-- Ações -->
           <div class="form-row actions">
             <a href="dashboard.html" class="btn cancel">Cancelar</a>
             <button type="submit" class="btn save">Salvar Alterações</button>
           </div>
         </form>
       </div>
+
     </main>
   </div>
 
-  <!-- Carrega o conteúdo da sidebar -->
+  <script src="/codigo/js/utils.js"></script>
   <script src="/codigo/js/sidebar.js"></script>
   <script>
-    document.getElementById('patrimonioForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const notification = document.getElementById('notification');
-      
-      // Mostra notificação
-      notification.classList.remove('hidden');
-      
-      // Esconde após 3 segundos
-      setTimeout(() => {
-        notification.classList.add('hidden');
-      }, 3000);
+  document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("usuarioLogado")||"{}");
+    if(!user.id) return window.location.href="signin.html";
+    document.getElementById("userName").textContent = user.nome;
+
+    const params = new URLSearchParams(location.search);
+    const id     = params.get("id");
+    const all    = JSON.parse(localStorage.getItem("patrimonios")||"[]");
+    const patr   = all.find(p=>p.numero===id);
+
+    const notif   = document.getElementById("notification");
+    const content = notif.querySelector(".notification-content");
+    const msgEl   = notif.querySelector(".notification-message");
+    function showNotification(msg, type="success"){
+      msgEl.textContent = msg;
+      content.className = "notification-content "+(type==="error"?"error":"success");
+      notif.classList.remove("hidden");
+      setTimeout(()=>notif.classList.add("hidden"),3000);
+    }
+
+    // campos iniciais
+    document.getElementById("patrimonioNum").value  = patr.numero;
+    document.getElementById("nomePatrimonio").value = patr.nome;
+    document.getElementById("notaFiscal").value     = patr.nf;
+    document.getElementById("dataCompra").value     = patr.dataCompra;
+    document.getElementById("valorCompra").value    = patr.valor;
+    document.getElementById("status").value         = patr.status;
+
+    // popula selects
+    ["filial","tipo","fornecedor"].forEach(key=>{
+      const sel = document.getElementById(key);
+      JSON.parse(localStorage.getItem(key)||"[]")
+        .forEach(v=>sel.add(new Option(v,v)));
+      sel.value = patr[key];
+      document.getElementById("btn-"+key).onclick = ()=> abrirCrud(key);
     });
+
+    // imagem
+    const avatar = document.getElementById("avatar"),
+          inputFoto = document.getElementById("inputFoto");
+    if(patr.imagem) avatar.innerHTML=`<img src="${patr.imagem}">`;
+    document.getElementById("btn-edit-photo").onclick = ()=> inputFoto.click();
+    document.getElementById("btn-delete-photo").onclick = ()=>{
+      const old = patr.imagem||"";
+      patr.imagem = "";
+      avatar.innerHTML="";
+      registrarMudanca("Imagem", old?"alterada":"removida", old, "");
+      salvar(); showNotification("Imagem removida"); 
+    };
+    inputFoto.addEventListener("change", ()=>{
+      const file = inputFoto.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = e=>{
+        const old = patr.imagem||"";
+        patr.imagem = e.target.result;
+        avatar.innerHTML=`<img src="${patr.imagem}">`;
+        registrarMudanca("Imagem", old?"alterada":"inserida", old, "");
+        salvar(); showNotification("Imagem atualizada");
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // render histórico
+    function render(chave, ulId){
+      const arr = JSON.parse(localStorage.getItem(chave)||"[]")
+        .filter(x=>x.patrimonio===id);
+      const ul = document.getElementById(ulId); ul.innerHTML="";
+      arr.forEach(item=>{
+        const li=document.createElement("li");
+        li.textContent=`[${item.dataHora}] ${item.usuario}: ${item.acao}`;
+        ul.appendChild(li);
+      });
+    }
+    render("tramites","histTramites");
+    render("manutencoes","histManutencao");
+
+    // CRUD filial/tipo/forn
+    function abrirCrud(key){
+      const mc = document.getElementById("modal-container"),
+            lista = JSON.parse(localStorage.getItem(key)||"[]");
+      mc.innerHTML=`
+      <div class="modal-box">
+        <h2>Gerenciar ${key[0].toUpperCase()+key.slice(1)}</h2>
+        <div class="modal-form">
+          <input id="novo-${key}" placeholder="Novo ${key}">
+          <button id="confirmAdd" class="btn save">Adicionar</button>
+        </div>
+        <ul class="modal-lista">
+          ${lista.map((v,i)=>`
+            <li>
+              <input value="${v}" onchange="editar('${key}',${i},this.value)">
+              <button onclick="excluir('${key}',${i})" class="btn cancel">✖</button>
+            </li>
+          `).join("")}
+        </ul>
+        <button class="btn cancel" onclick="fecharModal()">Fechar</button>
+      </div>`;
+      mc.classList.remove("hidden");
+      document.getElementById("confirmAdd").onclick=()=>{
+        const v=document.getElementById("novo-"+key).value.trim();
+        if(!v) return;
+        const arr = JSON.parse(localStorage.getItem(key)||"[]");
+        arr.push(v);
+        localStorage.setItem(key,JSON.stringify(arr));
+        fecharModal(); abrirCrud(key);
+      };
+    }
+    window.fecharModal=()=>document.getElementById("modal-container").classList.add("hidden");
+    window.editar=(k,i,v)=>{
+      const a=JSON.parse(localStorage.getItem(k)||"[]"); const old=a[i];
+      a[i]=v; localStorage.setItem(k,JSON.stringify(a));
+      registrarMudanca(k[0].toUpperCase()+k.slice(1), "alterado", old, v);
+    };
+    window.excluir=(k,i)=>{
+      const a=JSON.parse(localStorage.getItem(k)||"[]"), old=a[i];
+      a.splice(i,1); localStorage.setItem(k,JSON.stringify(a));
+      abrirCrud(k);
+      registrarMudanca(k[0].toUpperCase()+k.slice(1), "removido", old, "");
+    };
+
+    // modal históricos
+    function abrirHistorico(chave,titulo){
+      const mc=document.getElementById("modal-container"),
+            lista=JSON.parse(localStorage.getItem(chave)||"[]")
+              .filter(x=>x.patrimonio===id);
+      mc.innerHTML=`
+      <div class="modal-box">
+        <h2>${titulo}</h2>
+        <div class="modal-form">
+          <input id="novo-hist" placeholder="Nova ${titulo.toLowerCase()}">
+          <button id="confirmHist" class="btn save">Adicionar</button>
+        </div>
+        <ul class="modal-lista">
+          ${lista.map(item=>`<li>${item.dataHora} — ${item.usuario}: ${item.acao}</li>`).join("")}
+        </ul>
+        <button class="btn cancel" onclick="fecharModal()">Fechar</button>
+      </div>`;
+      mc.classList.remove("hidden");
+      document.getElementById("confirmHist").onclick=()=>{
+        const v=document.getElementById("novo-hist").value.trim();
+        if(!v) return;
+        const arr=JSON.parse(localStorage.getItem(chave)||"[]");
+        arr.push({
+          patrimonio:id,
+          usuario:user.nome,
+          acao:v,
+          dataHora:new Date().toLocaleString()
+        });
+        localStorage.setItem(chave,JSON.stringify(arr));
+        fecharModal();
+        render(chave, chave==="tramites"?"histTramites":"histManutencao");
+        abrirHistorico(chave,titulo);
+      };
+    }
+    document.getElementById("btn-add-tramite")
+      .onclick=()=>abrirHistorico("tramites","Trâmites");
+    document.getElementById("btn-add-manut")
+      .onclick=()=>abrirHistorico("manutencoes","Manutenções");
+
+    // registra mudança genérica
+    function registrarMudanca(campo, tipo, oldVal, newVal){
+      const tr=JSON.parse(localStorage.getItem("tramites")||"[]"),
+            now=new Date(),
+            dt=now.toLocaleDateString(),
+            tm=now.toLocaleTimeString();
+      let msg;
+      if(tipo==="alterado")
+        msg=`O ${campo} foi alterado de |${oldVal}| para >> |${newVal}|`;
+      else if(tipo==="removido")
+        msg=`O ${campo} foi removido (valor anterior: |${oldVal}|)`;
+      else if(tipo==="inserida"||tipo==="alterada")
+        msg=`${campo} foi ${tipo}`;
+      else
+        msg=`${campo} ${tipo}`;
+      tr.push({
+        patrimonio:id,
+        usuario:user.nome,
+        acao:msg,
+        dataHora:`${dt}, ${tm}`
+      });
+      localStorage.setItem("tramites",JSON.stringify(tr));
+      render("tramites","histTramites");
+    }
+
+    // submit salva e volta ao dashboard
+    document.getElementById("patrimonioForm").addEventListener("submit",e=>{
+      e.preventDefault();
+      // guarda antigos
+      const velho={ 
+        nome:patr.nome,
+        filial:patr.filial,
+        tipo:patr.tipo,
+        fornecedor:patr.fornecedor,
+        nf:patr.nf,
+        dataCompra:patr.dataCompra,
+        valor:patr.valor,
+        status:patr.status
+      };
+      // novos valores
+      patr.nome       = document.getElementById("nomePatrimonio").value.trim();
+      patr.filial     = document.getElementById("filial").value;
+      patr.tipo       = document.getElementById("tipo").value;
+      patr.fornecedor = document.getElementById("fornecedor").value;
+      patr.nf         = document.getElementById("notaFiscal").value.trim();
+      patr.dataCompra = document.getElementById("dataCompra").value;
+      patr.valor      = parseFloat(document.getElementById("valorCompra").value)||0;
+      patr.status     = document.getElementById("status").value;
+
+      // registrar mudanças
+      if(velho.nome!==patr.nome)
+        registrarMudanca("Nome", "alterado", velho.nome, patr.nome);
+      if(velho.filial!==patr.filial)
+        registrarMudanca("Filial", "alterado", velho.filial, patr.filial);
+      if(velho.tipo!==patr.tipo)
+        registrarMudanca("Tipo de Patrimônio", "alterado", velho.tipo, patr.tipo);
+      if(velho.fornecedor!==patr.fornecedor)
+        registrarMudanca("Fornecedor", "alterado", velho.fornecedor, patr.fornecedor);
+      if(velho.nf!==patr.nf)
+        registrarMudanca("Nota Fiscal", "alterado", velho.nf, patr.nf);
+      if(velho.dataCompra!==patr.dataCompra)
+        registrarMudanca("Data de Compra", "alterado", velho.dataCompra, patr.dataCompra);
+      if(velho.valor!==patr.valor)
+        registrarMudanca("Valor", "alterado", velho.valor, patr.valor);
+      if(velho.status!==patr.status)
+        registrarMudanca("Status", "alterado", velho.status, patr.status);
+
+      salvar();
+      showNotification("Alterações salvas");
+      setTimeout(()=> window.location.href="dashboard.html", 500);
+    });
+
+    function salvar(){
+      localStorage.setItem("patrimonios",JSON.stringify(all));
+    }
+
+  });
   </script>
+
+  <div id="modal-container" class="modal-container hidden"></div>
 </body>
 </html>
