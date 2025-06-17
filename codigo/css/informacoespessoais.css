@@ -108,12 +108,12 @@ body {
 /* Botão de editar foto (câmera) */
 .edit-photo-btn {
   position: absolute;
-  bottom: 8px;      /* 8px de distância do fundo do círculo */
-  right: 8px;       /* 8px de distância da borda direita */
+  bottom: 8px;
+  right: 8px;
   background: var(--azul-medio);
   border: none;
   border-radius: 50%;
-  width: 30px;      /* tamanho fixo para não distorcer */
+  width: 30px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -123,7 +123,7 @@ body {
 }
 
 .edit-photo-btn svg {
-  width: 16px;      /* ícone proporcional */
+  width: 16px;
   height: 16px;
   fill: var(--branco);
 }
@@ -135,12 +135,12 @@ body {
 /* Botão de excluir foto (lixeira) */
 .delete-photo-btn {
   position: absolute;
-  top: 8px;         /* 8px de distância do topo do círculo */
-  right: 8px;       /* 8px de distância da borda direita */
+  top: 8px;
+  right: 8px;
   background: var(--vermelho);
   border: none;
   border-radius: 50%;
-  width: 30px;      /* mesmo tamanho do editar */
+  width: 30px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -148,6 +148,7 @@ body {
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .delete-photo-btn svg {
   width: 16px;
   height: 16px;
@@ -155,7 +156,7 @@ body {
 }
 
 .delete-photo-btn:hover {
-  background: #a30000;  /* ou outro tom escuro de vermelho */
+  background: #a30000;
 }
 
 /* Input de arquivo oculto */
@@ -215,29 +216,22 @@ body {
 
 /* ——— Modal de Confirmação Customizado ——— */
 #confirmModal {
-  /* escondido por padrão */
   display: none;
-
-  /* ocupa toda a tela e fica acima de tudo */
   position: fixed;
   inset: 0;
   z-index: 10000;
-
-  /* torna-o um flex‐container para centralizar o conteúdo */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .confirm-overlay {
-  /* overlay semitransparente cobrindo tudo */
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.5);
 }
 
 .confirm-box {
-  /* caixa branca no centro */
   position: relative;
   background: var(--branco);
   padding: 1.5rem;
@@ -246,7 +240,7 @@ body {
   width: 90%;
   max-width: 320px;
   text-align: center;
-  z-index: 2; /* acima do overlay */
+  z-index: 2;
 }
 
 .confirm-box p {
@@ -257,7 +251,6 @@ body {
 .confirm-actions {
   display: flex;
   justify-content: space-between;
-  /* inverte a ordem natural dos botões */
   flex-direction: row-reverse;
 }
 
@@ -271,6 +264,7 @@ body {
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .btn.confirm-ok:hover {
   background: #a30000;
 }
@@ -285,12 +279,14 @@ body {
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .btn.cancel:hover {
   background: var(--azul-medio);
 }
 
-
 /* Responsividade */
+
+/* Tablet e smartphones largos (até 768px) */
 @media (max-width: 768px) {
   .dashboard-container {
     margin-left: 0;
@@ -317,5 +313,71 @@ body {
   
   .detail-label {
     min-width: auto;
+  }
+}
+
+/* Smartphones médios (até 480px) */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem;
+  }
+  .profile-container {
+    padding: 1rem;
+  }
+  .profile-header {
+    gap: 0.8rem;
+  }
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+  }
+  .avatar-placeholder {
+    border-width: 2px;
+  }
+  .detail-group h3 {
+    font-size: 1.1rem;
+  }
+  .detail-item {
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+  }
+  .detail-label {
+    font-size: 0.9rem;
+  }
+  .detail-value {
+    font-size: 0.9rem;
+  }
+}
+
+/* Smartphones pequenos (até 360px) */
+@media (max-width: 360px) {
+  .main-content {
+    padding: 0.8rem;
+  }
+  .profile-container {
+    padding: 0.8rem;
+  }
+  .profile-header {
+    gap: 0.6rem;
+  }
+  .profile-photo {
+    width: 80px;
+    height: 80px;
+  }
+  .avatar-placeholder {
+    border-width: 1.5px;
+  }
+  .detail-group h3 {
+    font-size: 1rem;
+  }
+  .detail-item {
+    gap: 0.3rem;
+    padding: 0.3rem 0;
+  }
+  .detail-label {
+    font-size: 0.85rem;
+  }
+  .detail-value {
+    font-size: 0.85rem;
   }
 }

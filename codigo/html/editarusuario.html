@@ -117,135 +117,139 @@
   <script src="/codigo/js/sidebar.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Verifica permissão
+    // checa permissão
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
-    if (!usuarioLogado || usuarioLogado.administrador !== "Sim") {
+    if (!usuarioLogado.administrador || usuarioLogado.administrador !== "Sim") {
       alert("Acesso restrito. Permissão de administrador necessária.");
-      window.location.href = "dashboard.html";
-      return;
+      return window.location.href = "dashboard.html";
     }
-    // Saudação com nome
-    document.getElementById("userName").textContent = usuarioLogado.nome || "Usuário";
+    document.getElementById("userName").textContent = usuarioLogado.nome;
 
-      // Parâmetro id na URL
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
-      if (!id) {
-        alert("Usuário não encontrado.");
-        window.location.href = "gerenciamentodeusuario.html";
-        return;
-      }
+    // pega id da URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+    const usuario = usuarios.find(u => u.id === id);
+    if (!usuario) {
+      alert("Usuário inválido.");
+      return window.location.href = "gerenciamentodeusuario.html";
+    }
 
-      // Carrega lista de usuários e preenche formulário
-      const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
-      const usuario = usuarios.find(u => u.id === id);
-      if (!usuario) {
-        alert("Usuário inválido.");
-        window.location.href = "gerenciamentodeusuario.html";
-        return;
-      }
-      document.getElementById("codigoUsuario").value = usuario.id;
-      document.getElementById("nome").value = usuario.nome;
-      document.getElementById("email").value = usuario.email;
-      document.getElementById("status").value = usuario.status;
-      document.getElementById("administrador").value = usuario.administrador;
+    // preenche campos fixos
+    document.getElementById("codigoUsuario").value = usuario.id;
+    document.getElementById("nome").value = usuario.nome;
+    document.getElementById("email").value = usuario.email;
+    document.getElementById("status").value = usuario.status;
+    document.getElementById("administrador").value = usuario.administrador;
 
-      // Funções de modal
-      function abrirModal(tipo) {
-        const title = tipo.charAt(0).toUpperCase() + tipo.slice(1);
-        const dados = JSON.parse(localStorage.getItem(tipo) || "[]");
-        const modalContainer = document.getElementById("modal-container");
-        modalContainer.innerHTML = `
-          <div class="modal-overlay" onclick="fecharModal()"></div>
-          <div class="modal">
-            <h2>Gerenciar ${title}</h2>
-            <div class="modal-form">
-              <input type="text" id="novo-${tipo}" placeholder="Novo ${title}">
-              <button onclick="adicionarItem('${tipo}')">Adicionar</button>
-            </div>
-            <ul id="lista-${tipo}" class="modal-lista">
-              ${dados.map((item, idx) => `
-                <li>
-                  <input value="${item}" onchange="editarItem('${tipo}', ${idx}, this.value)">
-                  <button onclick="excluirItem('${tipo}', ${idx})">Excluir</button>
-                </li>
-              `).join("")}
-            </ul>
-            <button onclick="fecharModal()" class="modal-fechar">Fechar</button>
-          </div>`;
-        modalContainer.style.display = "block";
-      }
-      function fecharModal() {
-        const modal = document.getElementById("modal-container");
-        modal.innerHTML = "";
-        modal.style.display = "none";
-      }
-      function adicionarItem(tipo) {
-        const input = document.getElementById("novo-" + tipo);
-        const lista = JSON.parse(localStorage.getItem(tipo) || "[]");
-        const val = input.value.trim();
-        if (val && !lista.includes(val)) {
-          lista.push(val);
-          localStorage.setItem(tipo, JSON.stringify(lista));
-          fecharModal();
-          abrirModal(tipo);
-        }
-      }
-      function editarItem(tipo, idx, novoVal) {
-        const lista = JSON.parse(localStorage.getItem(tipo) || "[]");
-        lista[idx] = novoVal;
-        localStorage.setItem(tipo, JSON.stringify(lista));
-      }
-      function excluirItem(tipo, idx) {
-        const lista = JSON.parse(localStorage.getItem(tipo) || "[]");
-        lista.splice(idx, 1);
-        localStorage.setItem(tipo, JSON.stringify(lista));
-        abrirModal(tipo);
-      }
-      window.fecharModal = fecharModal;
-      window.adicionarItem = adicionarItem;
-      window.editarItem = editarItem;
-      window.excluirItem = excluirItem;
-
-      // Preenche selects de cargo e filial
-      function atualizarSelect(tipo) {
-        const sel = document.getElementById(tipo);
-        const lista = JSON.parse(localStorage.getItem(tipo) || "[]");
-        sel.innerHTML = "";
-        lista.forEach(item => {
+    // Função de recarregar um select
+    function atualizarSelect(tipo) {
+      const sel = document.getElementById(tipo);
+      sel.innerHTML = "";
+      JSON.parse(localStorage.getItem(tipo) || "[]")
+        .forEach(item => {
           const opt = document.createElement("option");
-          opt.value = item; opt.textContent = item;
+          opt.value = item;
+          opt.textContent = item;
           sel.appendChild(opt);
         });
-      }
-      atualizarSelect("cargo");
-      atualizarSelect("filial");
-      document.getElementById("cargo").value = usuario.cargo;
-      document.getElementById("filial").value = usuario.filial;
-      document.getElementById("btn-cargo").onclick = () => abrirModal("cargo");
-      document.getElementById("btn-filial").onclick = () => abrirModal("filial");
+    }
 
-      // Submissão do formulário
-      document.getElementById("editarUsuarioForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        usuario.nome = document.getElementById("nome").value;
-        usuario.email = document.getElementById("email").value;
-        usuario.status = document.getElementById("status").value;
-        usuario.administrador = document.getElementById("administrador").value;
-        usuario.cargo = document.getElementById("cargo").value;
-        usuario.filial = document.getElementById("filial").value;
-        const novaSenha = document.getElementById("novaSenha").value;
-        if (novaSenha.trim()) usuario.senha = novaSenha;
-        const idx = usuarios.findIndex(u => u.id === usuario.id);
-        usuarios[idx] = usuario;
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    // inicializa os selects
+    atualizarSelect("cargo");
+    atualizarSelect("filial");
+    document.getElementById("cargo").value = usuario.cargo;
+    document.getElementById("filial").value = usuario.filial;
 
-        document.getElementById("notification").classList.remove("hidden");
-        setTimeout(() => {
-          window.location.href = "gerenciamentodeusuario.html";
-        }, 1200);
-      });
+    // funções de modal CRUD para cargo/filial
+    function abrirModal(tipo) {
+      const title = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+      const dados = JSON.parse(localStorage.getItem(tipo) || "[]");
+      const mc = document.getElementById("modal-container");
+      mc.innerHTML = `
+        <div class="modal-overlay" onclick="fecharModal()"></div>
+        <div class="modal">
+          <h2>Gerenciar ${title}</h2>
+          <div class="modal-form">
+            <input type="text" id="novo-${tipo}" placeholder="Novo ${title}">
+            <button id="btn-add-${tipo}" class="btn save">Adicionar</button>
+          </div>
+          <ul id="lista-${tipo}" class="modal-lista">
+            ${dados.map((item, idx) => `
+              <li>
+                <input value="${item}" onchange="editarItem('${tipo}',${idx},this.value)">
+                <button onclick="excluirItem('${tipo}',${idx})" class="btn cancel">X</button>
+              </li>
+            `).join("")}
+          </ul>
+          <button class="btn cancel" onclick="fecharModal()">Fechar</button>
+        </div>`;
+      mc.style.display = "block";
+
+      // adicionar
+      document.getElementById("btn-add-"+tipo).onclick = () => {
+        const val = document.getElementById("novo-"+tipo).value.trim();
+        if (!val) return;
+        const arr = JSON.parse(localStorage.getItem(tipo) || "[]");
+        if (!arr.includes(val)) {
+          arr.push(val);
+          localStorage.setItem(tipo, JSON.stringify(arr));
+          atualizarSelect(tipo);      // <— recarrega o select imediatamente
+        }
+        abrirModal(tipo); // reabre para atualizar a lista interna
+      };
+    }
+
+    function fecharModal() {
+      const mc = document.getElementById("modal-container");
+      mc.innerHTML = "";
+      mc.style.display = "none";
+    }
+
+    window.abrirModal = abrirModal;
+    window.fecharModal = fecharModal;
+
+    window.editarItem = (tipo, idx, novoVal) => {
+      const arr = JSON.parse(localStorage.getItem(tipo) || "[]");
+      arr[idx] = novoVal;
+      localStorage.setItem(tipo, JSON.stringify(arr));
+      atualizarSelect(tipo);        // <— recarrega o select
+    };
+
+    window.excluirItem = (tipo, idx) => {
+      const arr = JSON.parse(localStorage.getItem(tipo) || "[]");
+      arr.splice(idx, 1);
+      localStorage.setItem(tipo, JSON.stringify(arr));
+      atualizarSelect(tipo);        // <— recarrega o select
+      abrirModal(tipo);             // atualiza modal
+    };
+
+    // bind dos botões de modal
+    document.getElementById("btn-cargo").onclick = () => abrirModal("cargo");
+    document.getElementById("btn-filial").onclick = () => abrirModal("filial");
+
+    // submissão do form
+    document.getElementById("editarUsuarioForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      usuario.nome = document.getElementById("nome").value;
+      usuario.email = document.getElementById("email").value;
+      usuario.status = document.getElementById("status").value;
+      usuario.administrador = document.getElementById("administrador").value;
+      usuario.cargo = document.getElementById("cargo").value;
+      usuario.filial = document.getElementById("filial").value;
+      const novaSenha = document.getElementById("novaSenha").value.trim();
+      if (novaSenha) usuario.senha = novaSenha;
+
+      const idx = usuarios.findIndex(u => u.id === usuario.id);
+      usuarios[idx] = usuario;
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+      document.getElementById("notification").classList.remove("hidden");
+      setTimeout(() => {
+        window.location.href = "gerenciamentodeusuario.html";
+      }, 1200);
     });
+  });
   </script>
 </body>
 </html>

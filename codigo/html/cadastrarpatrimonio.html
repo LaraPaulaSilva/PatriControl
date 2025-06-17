@@ -36,7 +36,6 @@
           <div class="form-row">
             <div class="form-group">
               <label for="patrimonioNum">Nº Patrimônio</label>
-              <!-- agora editável e somente 4 dígitos -->
               <input
                 type="text"
                 id="patrimonioNum"
@@ -127,17 +126,17 @@
   <script src="/codigo/js/sidebar.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const usuario = JSON.parse(localStorage.getItem("usuarioLogado")||"{}");
-      if (!usuario.id) return window.location.href="signin.html";
+      const usuario = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
+      if (!usuario.id) return window.location.href = "signin.html";
       document.getElementById("userName").textContent = usuario.nome;
 
       // Notificação
       const notification = document.getElementById("notification");
       const content = notification.querySelector(".notification-content");
       const msgElm = notification.querySelector(".notification-message");
-      function showNotification(msg, type="success") {
+      function showNotification(msg, type = "success") {
         msgElm.textContent = msg;
-        content.className = "notification-content " + (type==="error"?"error":"success");
+        content.className = "notification-content " + (type === "error" ? "error" : "success");
         notification.classList.remove("hidden");
         setTimeout(() => notification.classList.add("hidden"), 3000);
       }
@@ -146,10 +145,10 @@
       function populateSelect(tipo) {
         const sel = document.getElementById(tipo);
         sel.innerHTML = '<option value="">Selecione</option>';
-        JSON.parse(localStorage.getItem(tipo)||"[]")
-          .forEach(item => sel.add(new Option(item,item)));
+        JSON.parse(localStorage.getItem(tipo) || "[]")
+          .forEach(item => sel.add(new Option(item, item)));
       }
-      ["filial","tipo","fornecedor"].forEach(populateSelect);
+      ["filial", "tipo", "fornecedor"].forEach(populateSelect);
 
       // Preview de imagem
       const inpImg = document.getElementById("inputImagem");
@@ -166,28 +165,29 @@
       });
 
       // Configurações de modal…
-      const titles   = { filial: "Filiais", tipo: "Tipos de Patrimônio", fornecedor: "Fornecedores" };
+      const titles = { filial: "Filiais", tipo: "Tipos de Patrimônio", fornecedor: "Fornecedores" };
       const singular = { filial: "Filial", tipo: "Tipo de Patrimônio", fornecedor: "Fornecedor" };
       const modalCt = document.getElementById("modal-container");
 
       function abrirModal(tipo) {
-        const arr = JSON.parse(localStorage.getItem(tipo)||"[]");
+        const arr = JSON.parse(localStorage.getItem(tipo) || "[]");
         modalCt.innerHTML = `
           <div class="modal-overlay" onclick="fecharModal()"></div>
           <div class="modal-box">
             <h2>Gerenciar ${titles[tipo]}</h2>
             <div class="modal-form">
               <input id="novo-${tipo}"
-                     placeholder="${tipo==='filial'?'Nova':'Novo'} ${singular[tipo]}">
+                     placeholder="Novo ${singular[tipo]}">
               <button class="btn add" onclick="adicionarItem('${tipo}')">Adicionar</button>
             </div>
             <ul class="modal-lista" id="lista-${tipo}">
-              ${arr.map((v,i)=>`
+              ${arr.map((v,i) => `
                 <li>
                   <input value="${v}"
                          onchange="editarItem('${tipo}',${i},this.value)">
                   <button onclick="excluirItem('${tipo}',${i})">✖</button>
-                </li>`).join("")}
+                </li>
+              `).join("")}
             </ul>
             <button class="modal-close" onclick="fecharModal()">Fechar</button>
           </div>`;
@@ -198,7 +198,7 @@
       window.adicionarItem = t => {
         const v = document.getElementById(`novo-${t}`).value.trim();
         if (!v) return;
-        let arr = JSON.parse(localStorage.getItem(t)||"[]");
+        let arr = JSON.parse(localStorage.getItem(t) || "[]");
         if (!arr.includes(v)) {
           arr.push(v);
           localStorage.setItem(t, JSON.stringify(arr));
@@ -207,18 +207,18 @@
         }
       };
       window.editarItem = (t,i,v) => {
-        let arr = JSON.parse(localStorage.getItem(t)||"[]");
+        let arr = JSON.parse(localStorage.getItem(t) || "[]");
         arr[i] = v; localStorage.setItem(t, JSON.stringify(arr));
         populateSelect(t);
       };
       window.excluirItem = (t,i) => {
-        let arr = JSON.parse(localStorage.getItem(t)||"[]");
+        let arr = JSON.parse(localStorage.getItem(t) || "[]");
         arr.splice(i,1); localStorage.setItem(t, JSON.stringify(arr));
         populateSelect(t);
         abrirModal(t);
       };
-      ["filial","tipo","fornecedor"].forEach(t=>{
-        document.getElementById(`btn-${t}`).onclick = ()=>abrirModal(t);
+      ["filial","tipo","fornecedor"].forEach(t => {
+        document.getElementById(`btn-${t}`).onclick = () => abrirModal(t);
       });
 
       // Submissão com validação do Nº (4 dígitos)
@@ -232,12 +232,13 @@
           return;
         }
 
-        const patrimonios = JSON.parse(localStorage.getItem("patrimonios")||"[]");
+        const patrimonios = JSON.parse(localStorage.getItem("patrimonios") || "[]");
         if (patrimonios.some(p => p.numero === numero)) {
           showNotification("Esse número de patrimônio já existe.", "error");
           return;
         }
 
+        // monta o objeto p
         const p = {
           numero,
           nome: document.getElementById("nomePatrimonio").value.trim(),
@@ -253,16 +254,21 @@
           criadoEm: new Date().toLocaleString()
         };
 
+        // salva patrimônio
         patrimonios.push(p);
         localStorage.setItem("patrimonios", JSON.stringify(patrimonios));
 
-        const tramites = JSON.parse(localStorage.getItem("tramites")||"[]");
+        // registra trâmite padronizado
+        const tramites = JSON.parse(localStorage.getItem("tramites") || "[]");
         tramites.push({
-          patrimonio: p.numero,
-          alteradoPor: usuario.id,
-          acao: "Cadastro de patrimônio",
-          dados: { ...p },
-          dataHora: new Date().toLocaleString()
+          patrimonio:   p.numero,
+          idUsuario:    usuario.id,
+          nomeUsuario:  usuario.nome,
+          acao:         "Criou patrimônio",
+          campo:        "PATRIMÔNIO",
+          valorAntigo:  "",
+          valorNovo:    p.numero,
+          dataHora:     new Date().toLocaleString()
         });
         localStorage.setItem("tramites", JSON.stringify(tramites));
 

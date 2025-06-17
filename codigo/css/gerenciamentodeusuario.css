@@ -148,11 +148,28 @@ tr:hover {
 }
 
 /* Responsivo */
+
+/* até 768px: sidebar colapsa, tabela e fonte menores */
 @media (max-width: 768px) {
-  .dashboard-container { margin-left: 0; }
-  table { font-size: 0.8rem; }
-  th, td { padding: 0.8rem 0.5rem; }
+  .dashboard-container {
+    margin-left: 0;
+  }
+  table {
+    font-size: 0.8rem;
+  }
+  th, td {
+    padding: 0.8rem 0.5rem;
+  }
+  /* filtro: itens empilham-se */
+  .filter-container .search-bar {
+    flex-direction: column;
+  }
+  .filter-container .search-group {
+    flex: 1 1 100%;
+  }
 }
+
+/* até 576px: cabeçalho vertical e botões full-width */
 @media (max-width: 576px) {
   .content-header {
     flex-direction: column;
@@ -164,5 +181,36 @@ tr:hover {
     display: block;
     text-align: center;
     margin-bottom: 0.5rem;
+  }
+}
+
+/* até 480px: formatação ainda mais compacta */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem;
+  }
+  .filter-container {
+    padding: 1rem;
+  }
+  .filter-container .search-group select {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+  .action-btn {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* até 360px: ajustes finais para telas muito pequenas */
+@media (max-width: 360px) {
+  .main-content {
+    padding: 0.8rem;
+  }
+  th, td {
+    padding: 0.6rem 0.4rem;
+  }
+  .action-btn {
+    font-size: 0.8rem;
   }
 }
