@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PatriControl - Sistema de Gestão Patrimonial</title>
-  <link rel="stylesheet" href="/docs/sidebar.css">
+  <link rel="stylesheet" href="sidebar.css">
 </head>
 <body>
   <!-- Container da Sidebar (será preenchido via JavaScript) -->
@@ -22,15 +22,15 @@
           <span class="arrow" aria-hidden="true">▼</span>
         </label>
         <div class="submenu" role="menu">
-          <a href="/docs/informacoespessoais.html" role="menuitem">Minhas Informações</a>
-          <a href="/docs/alterarsenha.html" role="menuitem">Alterar Senha</a>
+          <a href="informacoespessoais.html" role="menuitem">Minhas Informações</a>
+          <a href="alterarsenha.html" role="menuitem">Alterar Senha</a>
           <!-- chama logout() ao invés de link estático -->
           <a href="#" role="menuitem" onclick="logout()">Sair</a>
         </div>
       </div>
 
       <!-- Link Direto -->
-      <a href="/docs/dashboard.html" class="menu-single" aria-current="page">
+      <a href="dashboard.html" class="menu-single" aria-current="page">
         Dashboard
       </a>
 
@@ -42,8 +42,8 @@
           <span class="arrow" aria-hidden="true">▼</span>
         </label>
         <div class="submenu" role="menu">
-          <a href="/docs/cadastrarusuario.html" role="menuitem">Cadastrar Usuário</a>
-          <a href="/docs/gerenciamentodeusuario.html" role="menuitem">Gerenciar Usuários</a>
+          <a href="cadastrarusuario.html" role="menuitem">Cadastrar Usuário</a>
+          <a href="gerenciamentodeusuario.html" role="menuitem">Gerenciar Usuários</a>
         </div>
       </div>
     </nav>
@@ -59,7 +59,7 @@
     function logout() {
       // remove dados do usuário e vai para login
       localStorage.removeItem('usuarioLogado');
-      window.location.href = '/docs/index.html';
+      window.location.href = 'index.html';
     }
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.sidebar').classList.add('loaded');

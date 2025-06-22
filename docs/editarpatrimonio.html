@@ -7,8 +7,8 @@
   <!-- Fonte Segoe UI -->
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
   <!-- CSS da Sidebar e desta página -->
-  <link rel="stylesheet" href="/codigo/css/sidebar.css">
-  <link rel="stylesheet" href="/codigo/css/editarpatrimonio.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="editarpatrimonio.css">
 </head>
 <body>
   <div id="sidebar-container"></div>
@@ -121,7 +121,7 @@
 
           <!-- Ações -->
           <div class="form-row actions">
-            <a href="/docs/dashboard.html" class="btn cancel">Cancelar</a>
+            <a href="dashboard.html" class="btn cancel">Cancelar</a>
             <button type="submit" class="btn save">Salvar Alterações</button>
           </div>
         </form>
@@ -130,12 +130,12 @@
     </main>
   </div>
 
-  <script src="/docs/utils.js"></script>
-  <script src="/docs/sidebar.js"></script>
+  <script src="utils.js"></script>
+  <script src="sidebar.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
-    if (!user.id) return window.location.href = "/docs/index.html";
+    if (!user.id) return window.location.href = "index.html";
     document.getElementById("userName").textContent = user.nome;
 
     const params = new URLSearchParams(location.search);
@@ -369,7 +369,7 @@
 
       localStorage.setItem("patrimonios", JSON.stringify(all));
       showNotification("Alterações salvas");
-      setTimeout(() => window.location.href = "/docs/dashboard.html", 500);
+      setTimeout(() => window.location.href = "dashboard.html", 500);
     });
   });
   </script>
