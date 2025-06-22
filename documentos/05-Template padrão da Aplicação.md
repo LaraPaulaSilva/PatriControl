@@ -5,10 +5,7 @@
 Layout padrão da aplicação que será utilizado em todas as páginas com a definição de identidade visual, aspectos de responsividade e iconografia.
 
 ## Tela Inicial
-
-[![Tela Inicial - PatriControl](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-1-e1-proj-web-t11-patricontrol/blob/main/documentos/img/screenshot-tela-inicial.png?raw=true)](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-1-e1-proj-web-t11-patricontrol/blob/main/documentos/img/Grava%C3%A7%C3%A3o%20de%20Tela%202025-06-22%20091540.mp4)
-> Clique na imagem acima para assistir à tela inicial em vídeo.
-
+![Tela Menu Principal](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-1-e1-proj-web-t11-patricontrol/blob/main/documentos/img/Captura%20de%20tela%202025-06-22%20102258.png?raw=true)
 
 ## Tela de Login
 
