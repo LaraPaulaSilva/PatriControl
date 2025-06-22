@@ -6,8 +6,8 @@
   <title>PatriControl – Gestão de Patrimônios</title>
   <!-- Fonte e estilos da sidebar + dashboard -->
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/codigo/css/sidebar.css">
-  <link rel="stylesheet" href="/codigo/css/dashboard.css">
+  <link rel="stylesheet" href="/docs/sidebar.css">
+  <link rel="stylesheet" href="/docs/dashboard.css">
 </head>
 <body>
   <!-- Container da sidebar, preenchido via sidebar.js -->
@@ -75,7 +75,7 @@
 
       <!-- Botão para adicionar novo patrimônio -->
       <div class="add-asset-container">
-        <a href="cadastrarpatrimonio.html" class="add-asset-btn">
+        <a href="/docs/cadastrarpatrimonio.html" class="add-asset-btn">
           <span>+</span> Adicionar Patrimônio
         </a>
       </div>
@@ -103,14 +103,14 @@
   </div>
 
   <!-- Script da sidebar -->
-  <script src="/codigo/js/utils.js"></script>
-  <script src="/codigo/js/sidebar.js"></script>
+  <script src="/docs/utils.js"></script>
+  <script src="/docs/sidebar.js"></script>
   <!-- Lógica de filtros e renderização -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     // Obtém usuário logado e exibe nome
     const user = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
-    if (!user.id) return window.location.href = "/index.html";
+    if (!user.id) return window.location.href = "/docs/index.html";
     document.getElementById("userName").textContent = user.nome;
 
     // Função para popular selects (filial, tipo, fornecedor)

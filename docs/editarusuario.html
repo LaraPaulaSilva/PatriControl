@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PatriControl - Editar Usuário</title>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/codigo/css/sidebar.css">
-  <link rel="stylesheet" href="/codigo/css/editarusuario.css">
+  <link rel="stylesheet" href="/docs/sidebar.css">
+  <link rel="stylesheet" href="/docs/editarusuario.css">
 </head>
 <body>
   <!-- Sidebar -->
@@ -101,7 +101,7 @@
 
           <!-- Botões -->
           <div class="form-row actions">
-            <button type="button" class="btn cancel" onclick="window.location='gerenciamentodeusuario.html'">Cancelar</button>
+            <button type="button" class="btn cancel" onclick="window.location='/docs/gerenciamentodeusuario.html'">Cancelar</button>
             <button type="submit" class="btn save">Salvar Alterações</button>
           </div>
         </form>
@@ -113,15 +113,15 @@
   <div id="modal-container"></div>
 
   <!-- Scripts -->
-  <script src="/codigo/js/utils.js"></script>
-  <script src="/codigo/js/sidebar.js"></script>
+  <script src="/docs/utils.js"></script>
+  <script src="/docs/sidebar.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // checa permissão
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
     if (!usuarioLogado.administrador || usuarioLogado.administrador !== "Sim") {
       alert("Acesso restrito. Permissão de administrador necessária.");
-      return window.location.href = "dashboard.html";
+      return window.location.href = "/docs/dashboard.html";
     }
     document.getElementById("userName").textContent = usuarioLogado.nome;
 
@@ -132,7 +132,7 @@
     const usuario = usuarios.find(u => u.id === id);
     if (!usuario) {
       alert("Usuário inválido.");
-      return window.location.href = "gerenciamentodeusuario.html";
+      return window.location.href = "/docs/gerenciamentodeusuario.html";
     }
 
     // preenche campos fixos
@@ -246,7 +246,7 @@
 
       document.getElementById("notification").classList.remove("hidden");
       setTimeout(() => {
-        window.location.href = "gerenciamentodeusuario.html";
+        window.location.href = "/docs/gerenciamentodeusuario.html";
       }, 1200);
     });
   });

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PatriControl - Gerenciamento de Usuários</title>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/codigo/css/sidebar.css">
-  <link rel="stylesheet" href="/codigo/css/gerenciamentodeusuario.css">
+  <link rel="stylesheet" href="/docs/sidebar.css">
+  <link rel="stylesheet" href="/docs/gerenciamentodeusuario.css">
 </head>
 <body>
   <div id="sidebar-container"></div>
@@ -63,14 +63,14 @@
     </main>
   </div>
 
-  <script src="/codigo/js/utils.js"></script>
-  <script src="/codigo/js/sidebar.js"></script>
+  <script src="/docs/utils.js"></script>
+  <script src="/docs/sidebar.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
     if (!usuarioLogado || usuarioLogado.administrador !== "Sim") {
       alert("Acesso restrito. Permissão de administrador necessária.");
-      window.location.href = "dashboard.html";
+      window.location.href = "/docs/dashboard.html";
       return;
     }
     document.getElementById("userName").textContent = usuarioLogado.nome || "Usuário";

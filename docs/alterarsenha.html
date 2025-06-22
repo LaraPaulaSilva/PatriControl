@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PatriControl – Alteração de Senha</title>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/codigo/css/sidebar.css">
-  <link rel="stylesheet" href="/codigo/css/alterarsenha.css">
+  <link rel="stylesheet" href="/docs/sidebar.css">
+  <link rel="stylesheet" href="/docs/alterarsenha.css">
 </head>
 <body>
   <!-- Sidebar -->
@@ -45,14 +45,14 @@
     </div>
   </div>
 
-  <script src="/codigo/js/utils.js"></script>
-  <script src="/codigo/js/sidebar.js"></script>
+  <script src="/docs/utils.js"></script>
+  <script src="/docs/sidebar.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const usuario = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
       if (!usuario.id) {
         showNotification("Usuário não autenticado.", "error");
-        setTimeout(() => window.location.href = "index.html", 2000);
+        setTimeout(() => window.location.href = "/docs/index.html", 2000);
         return;
       }
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PatriControl - Sistema de Gestão Patrimonial</title>
-  <link rel="stylesheet" href="/codigo/css/index.css">
+  <link rel="stylesheet" href="/docs/index.css">
 </head>
 <body>
   <div class="container">
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <form id="loginForm" action="/codigo/html/dashboard.html" method="GET">
+      <form id="loginForm" action="/docs/dashboard.html" method="GET">
         <div class="label-float">
           <input type="text" id="email" required>
           <label for="email">E-mail Corporativo</label>
@@ -81,7 +81,7 @@
         }
 
         localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-        window.location.href = "/codigo/html/dashboard.html";
+        window.location.href = "/docs/dashboard.html";
       });
     });
   </script>

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>PatriControl - Cadastrar Patrimônio</title>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/codigo/css/sidebar.css">
-  <link rel="stylesheet" href="/codigo/css/cadastrarpatrimonio.css">
+  <link rel="stylesheet" href="/docs/sidebar.css">
+  <link rel="stylesheet" href="/docs/cadastrarpatrimonio.css">
 </head>
 <body>
   <!-- Sidebar -->
@@ -110,7 +110,7 @@
 
           <!-- Ações -->
           <div class="form-row actions">
-            <a href="dashboard.html" class="btn cancel">Cancelar</a>
+            <a href="/docs/dashboard.html" class="btn cancel">Cancelar</a>
             <button type="submit" class="btn save">Cadastrar</button>
           </div>
         </form>
@@ -122,12 +122,12 @@
   <div id="modal-container" class="modal-container hidden"></div>
 
   <!-- Scripts -->
-  <script src="/codigo/js/utils.js"></script>
-  <script src="/codigo/js/sidebar.js"></script>
+  <script src="/docs/utils.js"></script>
+  <script src="/docs/sidebar.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const usuario = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
-      if (!usuario.id) return window.location.href = "/index.html";
+      if (!usuario.id) return window.location.href = "/docs/index.html";
       document.getElementById("userName").textContent = usuario.nome;
 
       // Notificação
@@ -273,7 +273,7 @@
         localStorage.setItem("tramites", JSON.stringify(tramites));
 
         showNotification("Patrimônio cadastrado!", "success");
-        setTimeout(() => window.location.href = "dashboard.html", 1000);
+        setTimeout(() => window.location.href = "/docs/dashboard.html", 1000);
       });
     });
   </script>
