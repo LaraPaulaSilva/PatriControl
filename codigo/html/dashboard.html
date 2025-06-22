@@ -110,7 +110,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     // Obtém usuário logado e exibe nome
     const user = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
-    if (!user.id) return window.location.href = "index.html";
+    if (!user.id) return window.location.href = "/index.html";
     document.getElementById("userName").textContent = user.nome;
 
     // Função para popular selects (filial, tipo, fornecedor)

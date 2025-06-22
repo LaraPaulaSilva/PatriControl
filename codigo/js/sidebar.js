@@ -4,7 +4,7 @@
 function logout() {
   // Remove dados do usuário e redireciona para tela de login
   localStorage.removeItem("usuarioLogado");
-  window.location.href = "index.html";
+  window.location.href = "/index.html";
 }
 
 // ==============================
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Se não houver usuário logado, redireciona para index.html
   if (!usuarioLogado || !usuarioLogado.id) {
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
     return;
   }
 
