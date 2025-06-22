@@ -4,7 +4,7 @@
 function logout() {
   // Remove dados do usuário e redireciona para tela de login
   localStorage.removeItem("usuarioLogado");
-  window.location.href = "signin.html";
+  window.location.href = "index.html";
 }
 
 // ==============================
@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebarContainer = document.getElementById("sidebar-container");
   const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado") || "{}");
 
-  // Se não houver usuário logado, redireciona para signin.html
+  // Se não houver usuário logado, redireciona para index.html
   if (!usuarioLogado || !usuarioLogado.id) {
-    window.location.href = "signin.html";
+    window.location.href = "index.html";
     return;
   }
 
