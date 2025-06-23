@@ -37,11 +37,11 @@ O projeto "Patricontrol" foi desenvolvido com o objetivo de oferecer uma soluç�
 
 # Hospedagem
 
-* Insira o endereço eletrônico público de acesso ao conteúdo publicado. 
+* https://icei-puc-minas-pmv-ads.github.io/pmv-ads-2025-1-e1-proj-web-t11-patricontrol/index.html
 
 # Código-Fonte
 
-* <a href="codigo-fonte/README.md">Código Fonte</a>
+* <a href="README.md">Código Fonte</a>
 
 # Apresentação
 
