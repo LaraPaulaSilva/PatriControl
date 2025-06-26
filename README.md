@@ -10,12 +10,9 @@ O projeto "Patricontrol" foi desenvolvido com o objetivo de oferecer uma soluç�
 
 ## Integrantes
 
-* Iago Henrique Lima Silva De Oliveira 
 * Julia Gabriella Silva
 * Lara Paula Silva
-* Leandro Henrique de Oliveira Falcão Carvalho
 * Lucas Marques Gomes Viana Lima
-* Rickelmy Wendler de Freitas 
 
 ## Orientador
 
